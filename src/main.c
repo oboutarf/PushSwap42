@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/22 20:00:42 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/22 22:43:43 by oscobou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,39 @@ int     main(int ac, char **av)
     if (ft_isdup(av))											//->	Verification de possibles doublons dans les arguments
         return (write(2, "error\n", 6), 0);						//->	Si la verification echoue on renvoi "error"
     if (!(fill_stack(&stack_a, ac - 1, av)))					//->	Transvasement des arguments dans la stack A
-        return (write(2, "error\n", 6), 0);						//->	Si le transvasement echoue on renvoi "error"
+        return (write(2, "error\n", 6), 0);		    			//->	Si le transvasement echoue on renvoi "error"
     //  ft_sa(&stack_a);										//->	Nous effectuons la commande 'sa' en lui envoyant l'adresse du debut de la stack A 
     ft_pb(&stack_a, &stack_b);
-	ft_pa(&stack_a, &stack_b);
+	ft_pb(&stack_a, &stack_b);
+	ft_pb(&stack_a, &stack_b);
+	ft_pb(&stack_a, &stack_b);
+    
 	print_stack(stack_a);
-	printf("\n\n");								//->
-    ft_index(&stack_a);											//->
-    ft_index(&stack_b);											//->
-	ft_ra(&stack_a);
+    printf("\n# ^ ------------------------------ 1a #\n");
+    printf("# | S T A C K  A  -------------------  #\n");
+	printf("# | --------------------------------  #\n\n\n\n\n");
+    
+    print_stack(stack_b);
+    printf("\n# ^ ------------------------------ 1b #\n");
+	printf("# |  S T A C K  B  ------------------  #\n");	
+	printf("# | --------------------------------  #\n\n\n\n\n\n\n");
+
+    ft_index(&stack_a);											
+    ft_index(&stack_b);											
+	ft_rb(&stack_b);
     print_stack(stack_a);							
 
-	printf("\n# ^--------------------------------- #\n");
-    printf("# | S T A C K  A ------------------- #\n");
-	printf("# |--------------------------------- #\n\n\n\n\n");
+	printf("\n# ^ ------------------------------ 2a #\n");
+    printf("# |  S T A C K  A  ------------------  #\n");
+	printf("# | --------------------------------  #\n\n\n\n\n");
 
 	//  ft_index(&stack_a);
 	print_stack(stack_b);				
-	clear_stack(stack_a);
+	//clear_stack(stack_a);
 
-	printf("\n# ^--------------------------------- #\n");
-	printf("# | S T A C K  B ------------------- #\n");	
-	printf("# |--------------------------------- #\n\n\n\n\n\n\n");
+	printf("\n# ^ ------------------------------ 2b #\n");
+	printf("# |  S T A C K  B  ------------------  #\n");	
+	printf("# | --------------------------------  #\n\n\n\n\n\n\n");
 				
     return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:54:30 by oscobou           #+#    #+#             */
-/*   Updated: 2022/09/22 19:59:25 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/22 22:32:21 by oscobou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,15 +107,25 @@ void    ft_ra(stack **sta)
     (*sta) = tmp; 
 }
 
-/*
 // $ // ----------------------------------------------------------------- // # //
 
-void    rb(stack **st)
+void    ft_rb(stack **stb)
 {
+    stack   *save_b;
+    stack   *tmp;
 
+    if (!(*stb))
+        return ;
+    save_b = (*stb);
+    tmp = (*stb)->next;
+    while ((*stb)->next != NULL)
+        (*stb) = (*stb)->next;
+    (*stb)->next = save_b;
+    save_b->next = NULL;
+    (*stb) = tmp; 
 }
 
-
+/*
 // $ // ----------------------------------------------------------------- // # //
 
 void    rr(int ac, char **av)

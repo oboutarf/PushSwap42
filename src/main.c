@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/01 16:23:22 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/22 20:00:42 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,71 @@
 //	Prototype main avec les arguments
 // $ // ----------------------------------------------------------------- // # //
 
-int		ft_strlen(char *str)
-{
-	int		i = 0;
-
-	while (str[i])
-		i++;
-	return (i);
-}
-
 int     main(int ac, char **av)
 {
-	stack	*stack_a;
-	int		i = 0;
+	printf("Project: push_swap\n\n\n\n\n\n\n\n");
 
-	stack_a = create_new_stack();
+	stack	*stack_a;											//->	initialisation de la pile a
+    stack   *stack_b;											//->	initialisation de la pile b
+	stack_a = NULL;												//->	La pile A prend la valeur "NULL"
+    stack_b = NULL;												//->	La pile B prend la valeur "NULL"
+
+
+    if (ft_isdup(av))											//->	Verification de possibles doublons dans les arguments
+        return (write(2, "error\n", 6), 0);						//->	Si la verification echoue on renvoi "error"
+    if (!(fill_stack(&stack_a, ac - 1, av)))					//->	Transvasement des arguments dans la stack A
+        return (write(2, "error\n", 6), 0);						//->	Si le transvasement echoue on renvoi "error"
+    //  ft_sa(&stack_a);										//->	Nous effectuons la commande 'sa' en lui envoyant l'adresse du debut de la stack A 
+    ft_pb(&stack_a, &stack_b);
+	ft_pa(&stack_a, &stack_b);
 	print_stack(stack_a);
-	printf("# ---------------------------------- #\n");
-	while (i < ac)
-	{
-		stack_a = elem_addto_stack(stack_a, ft_atoi(av[i]));
-		//print_stack(stack_a);
-		i++;
-	}
-	print_stack(stack_a);
+	printf("\n\n");								//->
+    ft_index(&stack_a);											//->
+    ft_index(&stack_b);											//->
+	ft_ra(&stack_a);
+    print_stack(stack_a);							
+
+	printf("\n# ^--------------------------------- #\n");
+    printf("# | S T A C K  A ------------------- #\n");
+	printf("# |--------------------------------- #\n\n\n\n\n");
+
+	//  ft_index(&stack_a);
+	print_stack(stack_b);				
 	clear_stack(stack_a);
-	printf("# ---------------------------------- #\n");
-/* 	print_stack(stack_a); */
+
+	printf("\n# ^--------------------------------- #\n");
+	printf("# | S T A C K  B ------------------- #\n");	
+	printf("# |--------------------------------- #\n\n\n\n\n\n\n");
+				
     return (1);
 }
+
+
+
+
+
+
+// $ // ----------------------------------------------------------------- // # //
+//      Explication des commandes autorisees pour le projet 
+// $ // ----------------------------------------------------------------- // # //
+
+// void sa(stack **stack_a, stack **stack_b);   //  Intervertit les 2 premiers éléments au sommet de la pile a. Ne fait rien s’il n’y en a qu’un ou aucun.
+// void sb(stack **stack_a, stack **stack_b);   //  Intervertit les 2 premiers éléments au sommet de la pile b. Ne fait rien s’il n’y en a qu’un ou aucun
+// void ss(stack **stack_a, stack **stack_b);   //  sa et sb en même temps.
+
+// void pa(stack **stack_a, stack **stack_b);   //  Prend le premier élément au sommet de b et le met sur a. Ne fait rien si b est vide.
+// void pb(stack **stack_a, stack **stack_b);   //  Prend le premier élément au sommet de a et le met sur b. Ne fait rien si a est vide.
+
+// void ra(stack **stack_a, stack **stack_b);   //  Décale d’une position vers le haut tous les élements de la pile a. Le premier élément devient le dernier.
+// void rb(stack **stack_a, stack **stack_b);   //  Décale d’une position vers le haut tous les élements de la pile b. Le premier élément devient le dernier.
+// void rr(stack **stack_a, stack **stack_b);   //  ra et rb en même temps.
+
+// void rra(stack **stack_a, stack **stack_b);  //  Décale d’une position vers le bas tous les élements de la pile a. Le dernier élément devient le premier.
+// void rrb(stack **stack_a, stack **stack_b);  //  Décale d’une position vers le bas tous les élements de la pile b. Le dernier élément devient le premier.
+// void rrr(stack **stack_a, stack **stack_b);  //  rra et rrb en même temps.
+
+// $ // ----------------------------------------------------------------- // # //
+// $ // ----------------------------------------------------------------- // # //
 
 // $ // ----------------------------------------------------------------- // # //
 //	Prototype main sans les arguments
@@ -78,6 +114,4 @@ int     main(int ac, char **av)
     if (is_stack_clear(stack) == unclear)
         printf("->       stack unclear !\n");
     print_stack(stack); */
-    
-// $ // ----------------------------------------------------------------- // # //
  

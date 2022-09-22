@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/01 15:53:31 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/22 19:45:20 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,49 +18,61 @@
 #include <stdlib.h>
 
 // $ // ----------------------------------------------------------------- // # //
-//  Structure pour les fonctions renvoyant des types booleen
+//  Structure avec type enum 
 // $ // ----------------------------------------------------------------- // # //
 
-typedef enum
+typedef enum booln
 {
     unclear,
     clear
 }booln;
 
 // $ // ----------------------------------------------------------------- // # //
-//  Definition de la structure de ma pile
+//  Structure des piles A et B
 // $ // ----------------------------------------------------------------- // # //
 
 typedef struct stack
 {
     int             value;
+    int             index;
+    int             cost;
     struct  stack   *next;
-}stack;
+}stack;                
 
 // $ // ----------------------------------------------------------------- // # //
 //  Fonctions de type stack
 // $ // ----------------------------------------------------------------- // # //
 
-stack   *elem_addto_stack(stack *st, int x);
+stack   *elem_addto_stack(stack **st, int x, int index);
 stack   *create_new_stack(void);
 stack   *clear_stack(stack *st);
 
 // $ // ----------------------------------------------------------------- // # //
-//  Fonctions utilisees booln
+//  Fonctions des commandes autorisees
 // $ // ----------------------------------------------------------------- // # //
 
-booln    is_stack_clear(stack *st);
-
-// $ // ----------------------------------------------------------------- // # //
-//  Fonctions utilisees booln
-// $ // ----------------------------------------------------------------- // # //
-
+void    ft_pb(stack **sta, stack **stb);
+void    ft_pa(stack **sta, stack **stb);
 void    print_stack(stack *st);
+void    ft_index(stack **st);
+void    ft_ra(stack **sta);
+void    ft_sa(stack **st);
+void    ft_sb(stack **st);
+
+// $ // ----------------------------------------------------------------- // # //
+//  Fonctions de type booln
+// $ // ----------------------------------------------------------------- // # //
+
+booln    fill_stack(stack **stack_a, int ac, char **av);
+booln    is_stack_clear(stack *st);
+booln    ft_isnumber(char *str);
+booln    ft_isdup(char **av);
 
 // $ // ----------------------------------------------------------------- // # //
 //  Fonctions libft
 // $ // ----------------------------------------------------------------- // # //
 
+int		ft_strlen(char *str);
 int     ft_atoi(char *nptr);
 
 // $ // ----------------------------------------------------------------- // # //

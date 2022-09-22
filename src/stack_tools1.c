@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_tools.c                                      :+:      :+:    :+:   */
+/*   stack_tools1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:21:33 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/21 16:44:50 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/22 19:07:14 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// $ // ----------------------------------------------------------------- // # //
-
-stack   *create_new_stack(void)
-{
-    return (NULL);
-}
-
+// $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //
 // $ // ----------------------------------------------------------------- // # //
 
 booln   is_stack_clear(stack *st)
@@ -26,32 +20,6 @@ booln   is_stack_clear(stack *st)
     if (st == NULL)
         return (clear);
     return (unclear);
-}
-
-// $ // ----------------------------------------------------------------- // # //
-
-int	ft_atoi(char *nptr)
-{
-	int		mns;
-	int		num;
-	int		i;
-
-	i = 0;
-	num = 0;
-	mns = 1;
-	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\t'
-		|| nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
-		i++;
-	if (nptr[i] == '-')
-		mns = -1;
-	if (nptr[i] == '+' || nptr[i] == '-')
-		i++;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		num = num * 10 + (nptr[i] - 48);
-		i++;
-	}
-	return (num * mns);
 }
 
 // $ // ----------------------------------------------------------------- // # //
@@ -76,11 +44,6 @@ stack   *elem_addto_stack(stack **st, int x, int index)
 
 // $ // ----------------------------------------------------------------- // # //
 
-// int     ft_index(stack **st, int value)
-// int     fill_stack() 
-
-// $ // ----------------------------------------------------------------- // # //
-
 stack   *clear_stack(stack *st)
 {
     stack   *element;
@@ -94,19 +57,61 @@ stack   *clear_stack(stack *st)
 
 // $ // ----------------------------------------------------------------- // # //
 
-void    print_stack(stack *st)
+booln   ft_isnumber(char *str)
 {
-    if (is_stack_clear(st) == clear)
+    int i;
+    
+    i = 0;
+    if (str[i] == '-' || str[i] == '+')
+        i++;
+    while (str[i])
     {
-        printf("->      stack is clear, nothing to display !\n");
-        return;
+        if (!(str[i] >= '0' && str[i] <= '9'))
+            return (0);
+        i++;
     }
-    while (is_stack_clear(st) == unclear)
-    {
-        printf("value => %d, index => %d, cost => %d\n", st->value, st->index, st->cost);
-        st = st->next;
-    }
-    return ;
+    return (1);
 }
 
 // $ // ----------------------------------------------------------------- // # //
+
+void     ft_index(stack **st)
+{
+    stack   *start;
+    int     idx;
+    
+    idx = 0;
+    start = *st;
+    while (*st != NULL)
+    {
+        (*st)->index = idx++;
+        *st = (*st)->next;
+    }
+    *st = start;    // Important pour chaque liste permet de garder la position du pointeur//
+}
+
+// $ // ----------------------------------------------------------------- // # //
+
+booln   ft_isdup(char **av)
+{
+    int     i;
+    int     j;
+    i = 1;
+    j = 0;
+    while (av[j])
+    {
+        while (av[i])
+        {
+            if (ft_atoi(av[i]) == ft_atoi(av[j]))
+                return (1);
+            i++;
+        }
+        j++;
+        i = j + 1;
+        
+    }
+    return (0);
+}
+
+// $ // ----------------------------------------------------------------- // # //
+// $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //

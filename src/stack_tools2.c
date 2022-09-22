@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_tools.c                                      :+:      :+:    :+:   */
+/*   stack_tools2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 13:21:33 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/01 16:11:54 by oboutarf         ###   ########.fr       */
+/*   Created: 2022/09/22 19:04:30 by oboutarf          #+#    #+#             */
+/*   Updated: 2022/09/22 19:28:04 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //
 // $ // ----------------------------------------------------------------- // # //
 
 stack   *create_new_stack(void)
-{
+{ 
     return (NULL);
-}
-
-// $ // ----------------------------------------------------------------- // # //
-
-booln   is_stack_clear(stack *st)
-{
-    if (st == NULL)
-        return (clear);
-    return (unclear);
 }
 
 // $ // ----------------------------------------------------------------- // # //
@@ -56,32 +48,29 @@ int	ft_atoi(char *nptr)
 
 // $ // ----------------------------------------------------------------- // # //
 
-stack   *elem_addto_stack(stack *st, int x)
+int		ft_strlen(char *str)
 {
-    stack   *element;
+	int		i = 0;
 
-    element = malloc(sizeof(*element));
-    if (!element)
-    {
-        printf("Malloc error !");
-        return (NULL);
-    }
-    element->value = x;
-    element->next = st;
-    return (element);
+	while (str[i])
+		i++;
+	return (i);
 }
 
 // $ // ----------------------------------------------------------------- // # //
 
-stack   *clear_stack(stack *st)
+booln   fill_stack(stack **stack_a, int ac, char **av)
 {
-    stack   *element;
-    
-    if (is_stack_clear(st) == clear)
-        return (create_new_stack());
-    element = st->next;
-    free(st);
-    return (clear_stack(element));
+    while (ac > 0)
+    {
+        *stack_a = elem_addto_stack(stack_a, ft_atoi(av[ac]), ac - 1);
+        if (!ft_isnumber(av[ac]))
+            return (clear_stack(*stack_a), 0);
+        if (!(*stack_a))
+            return (clear_stack(*stack_a), 0);
+        ac--;
+    }
+    return (1);
 }
 
 // $ // ----------------------------------------------------------------- // # //
@@ -95,10 +84,11 @@ void    print_stack(stack *st)
     }
     while (is_stack_clear(st) == unclear)
     {
-        printf("%d\n", st->value);
+        printf("  %d    pos: %d, cost: %d\n", st->value, st->index, st->cost);
         st = st->next;
     }
     return ;
 }
 
 // $ // ----------------------------------------------------------------- // # //
+// $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //

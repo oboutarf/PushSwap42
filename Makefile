@@ -6,13 +6,14 @@
 #    By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/20 16:14:30 by oboutarf          #+#    #+#              #
-#    Updated: 2022/09/21 14:32:32 by oboutarf         ###   ########.fr        #
+#    Updated: 2022/09/22 20:06:08 by oboutarf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 			= push_swap
 
-SRCS 			= src/main.c src/stack_tools.c
+SRCS 			= src/main.c src/stack_tools1.c src/commands.c /
+				src/stack_tools2.c src/src/stack_tools.c 
 
 OPTIONS			= -c -I.
 
@@ -24,16 +25,16 @@ RM				= rm -f
 
 CFLAGS			= -Wall -Wextra -Werror
 
-NORM        	= norminette
+NORM        	= norminette *.c
 
 
 all: 			$(NAME)
 
 $(NAME):		$(OBJS)
-				ar rcs $(NAME) $(OBJS)
+				$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 $(OBJS): 		$(SRCS)
-				$(CC) $(CFLAGS) $(OPTIONS) $(SRCS)
+				$(CC) $(CFLAGS) -g3 $(OPTIONS) $(SRCS)
 
 clean:			
 				$(RM) $(OBJS)

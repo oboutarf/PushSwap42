@@ -6,7 +6,7 @@
 /*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/22 22:31:41 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/09/24 11:49:10 by oscobou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,19 @@ stack   *clear_stack(stack *st);
 //  Fonctions des commandes autorisees
 // $ // ----------------------------------------------------------------- // # //
 
+void    ft_rrr(stack **sta, stack **stb);
 void    ft_pa(stack **sta, stack **stb);
 void    ft_pb(stack **sta, stack **stb);
+void    ft_rr(stack **sta, stack **stb);
+void	ft_ss(stack **sta, stack **stb);
 void    print_stack(stack *st);
 void    ft_index(stack **st);
+void    ft_rra(stack **sta);
+void    ft_rrb(stack **stb);
 void    ft_ra(stack **sta);
 void    ft_rb(stack **stb);
-void    ft_sa(stack **st);
-void    ft_sb(stack **st);
+void    ft_sa(stack **sta);
+void    ft_sb(stack **sta);
 
 // $ // ----------------------------------------------------------------- // # //
 //  Fonctions de type booln

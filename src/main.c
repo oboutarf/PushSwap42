@@ -6,11 +6,11 @@
 /*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/22 22:43:43 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/09/24 11:42:33 by oscobou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../incld/push_swap.h"
 
 // $ // ----------------------------------------------------------------- // # //
 //	Prototype main avec les arguments
@@ -18,7 +18,7 @@
 
 int     main(int ac, char **av)
 {
-	printf("Project: push_swap\n\n\n\n\n\n\n\n");
+	printf("\n\n:Project: push_swap\n\n");
 
 	stack	*stack_a;											//->	initialisation de la pile a
     stack   *stack_b;											//->	initialisation de la pile b
@@ -30,38 +30,57 @@ int     main(int ac, char **av)
         return (write(2, "error\n", 6), 0);						//->	Si la verification echoue on renvoi "error"
     if (!(fill_stack(&stack_a, ac - 1, av)))					//->	Transvasement des arguments dans la stack A
         return (write(2, "error\n", 6), 0);		    			//->	Si le transvasement echoue on renvoi "error"
-    //  ft_sa(&stack_a);										//->	Nous effectuons la commande 'sa' en lui envoyant l'adresse du debut de la stack A 
+    //  ft_sa(&stack_a);
+    
+    printf("0000000000000000000000000000000000000000\n\n");
+    
+    print_stack(stack_a);
+    printf("\n# ^ ------------------------------  1A #\n");
+    printf("# | S T A C K  A  -------------------- #\n");
+	printf("# | ---------------------------------- #\n\n\n\n\n");
+    
+    print_stack(stack_b);
+    printf("\n# ^ ------------------------------  1B #\n");
+	printf("# |  S T A C K  B  ------------------- #\n");	
+	printf("# | ---------------------------------- #\n\n");
+
+    printf("0000000000000000000000000000000000000000\n\n");
+
     ft_pb(&stack_a, &stack_b);
 	ft_pb(&stack_a, &stack_b);
 	ft_pb(&stack_a, &stack_b);
 	ft_pb(&stack_a, &stack_b);
     
 	print_stack(stack_a);
-    printf("\n# ^ ------------------------------ 1a #\n");
-    printf("# | S T A C K  A  -------------------  #\n");
-	printf("# | --------------------------------  #\n\n\n\n\n");
+    printf("\n# ^ ------------------------------  2A #\n");
+    printf("# | S T A C K  A  -------------------- #\n");
+	printf("# | ---------------------------------- #\n\n\n\n\n");
     
     print_stack(stack_b);
-    printf("\n# ^ ------------------------------ 1b #\n");
-	printf("# |  S T A C K  B  ------------------  #\n");	
-	printf("# | --------------------------------  #\n\n\n\n\n\n\n");
+    printf("\n# ^ ------------------------------  2B #\n");
+	printf("# |  S T A C K  B  ------------------- #\n");	
+	printf("# | ---------------------------------- #\n\n");
+
+    printf("0000000000000000000000000000000000000000\n\n");
 
     ft_index(&stack_a);											
     ft_index(&stack_b);											
-	ft_rb(&stack_b);
+	//ft_rb(&stack_b);
+    ft_rrb(&stack_b);
+    //ft_rra(&stack_a);
     print_stack(stack_a);							
 
-	printf("\n# ^ ------------------------------ 2a #\n");
-    printf("# |  S T A C K  A  ------------------  #\n");
-	printf("# | --------------------------------  #\n\n\n\n\n");
+	printf("\n# ^ ------------------------------  3A #\n");
+    printf("# |  S T A C K  A  ------------------- #\n");
+	printf("# | ---------------------------------- #\n\n\n\n\n");
 
 	//  ft_index(&stack_a);
 	print_stack(stack_b);				
 	//clear_stack(stack_a);
 
-	printf("\n# ^ ------------------------------ 2b #\n");
-	printf("# |  S T A C K  B  ------------------  #\n");	
-	printf("# | --------------------------------  #\n\n\n\n\n\n\n");
+	printf("\n# ^ ------------------------------  3B #\n");
+	printf("# |  S T A C K  B  ------------------- #\n");	
+	printf("# | ---------------------------------- #\n\n\n\n\n\n\n");
 				
     return (1);
 }

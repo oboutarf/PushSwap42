@@ -6,16 +6,16 @@
 /*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:54:30 by oscobou           #+#    #+#             */
-/*   Updated: 2022/09/22 22:32:21 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/09/24 11:49:17 by oscobou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../incld/push_swap.h"
 
 // $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //
 // $ // ----------------------------------------------------------------- // # //
 
-void    ft_sa(stack **st)
+void    ft_sa(stack **sta)
 {
     stack       *save;
     stack       *tmp;
@@ -31,7 +31,7 @@ void    ft_sa(stack **st)
 
 // $ // ----------------------------------------------------------------- // # //
 
-void    ft_sb(stack **st)
+void    ft_sb(stack **stb)
 {
     stack       *save;
     stack       *tmp;
@@ -45,6 +45,13 @@ void    ft_sb(stack **st)
     tmp->next = save;
 }
 
+// $ // ----------------------------------------------------------------- // # //
+/*
+void	ft_ss(stack **sta, stack **stb)
+{
+	
+}
+*/
 // $ // ----------------------------------------------------------------- // # //
 
 void    ft_pb(stack **sta, stack **stb)
@@ -126,25 +133,64 @@ void    ft_rb(stack **stb)
 }
 
 /*
+
 // $ // ----------------------------------------------------------------- // # //
 
-void    rr(int ac, char **av)
+void    ft_rr(stack **sta, stack **stb)
 {
     
 }
 
+*/
+
 // $ // ----------------------------------------------------------------- // # //
 
-void    rra(int ac, char **av)
+void    ft_rra(stack **sta)
 {
+    stack   **sta_save;
+    stack   *save_bottom;
+    stack   *tmp;
 
+    if (!(*sta))
+        return ;
+    sta_save = sta;
+    tmp = (*sta);
+    while ((*sta_save)->next->next != NULL)
+        (*sta_save) = (*sta_save)->next;
+    save_bottom = (*sta_save)->next;
+    (*sta_save)->next = (NULL);
+    (*sta) = save_bottom;
+    (*sta)->next = tmp;
 }
 
+
+
 // $ // ----------------------------------------------------------------- // # //
 
-void    rrb(int ac, char **av)
+void    ft_rrb(stack **stb)
 {
-    
+    stack   **stb_save;
+    stack   *save_bottom;
+    stack   *tmp;
+
+    if (!(*stb))
+        return ;
+    stb_save = stb;
+    tmp = (*stb);
+    while ((*stb_save)->next->next != NULL)
+        (*stb_save) = (*stb_save)->next;
+    save_bottom = (*stb_save)->next;
+    (*stb_save)->next = (NULL);
+    (*stb) = save_bottom;
+    (*stb)->next = tmp;
+}
+
+/*
+// $ // ----------------------------------------------------------------- // # //
+
+void    ft_rrr(stack **sta, stack **stb)
+{
+
 }
 
 // $ // ----------------------------------------------------------------- // # //

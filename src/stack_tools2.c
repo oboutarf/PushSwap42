@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   stack_tools2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:04:30 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/22 19:28:04 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/24 11:19:05 by oscobou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../incld/push_swap.h"
 
 // $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //
 // $ // ----------------------------------------------------------------- // # //
@@ -79,7 +79,7 @@ void    print_stack(stack *st)
 {
     if (is_stack_clear(st) == clear)
     {
-        printf("->      stack is clear, nothing to display !\n");
+        printf("->   stack is clear, nothing to display!\n");
         return;
     }
     while (is_stack_clear(st) == unclear)

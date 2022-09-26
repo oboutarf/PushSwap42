@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/24 11:49:10 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/09/26 17:53:54 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ typedef enum booln
     clear
 }booln;
 
+
+
+/* typedef struct elemstack
+{
+    int                 ;
+    int                 ;
+    struct  elemstack    *next;
+}; */
+
+
 // $ // ----------------------------------------------------------------- // # //
 //  Structure des piles A et B
 // $ // ----------------------------------------------------------------- // # //
@@ -35,9 +45,9 @@ typedef struct stack
 {
     int             value;
     int             index;
-    int             cost;
+    int             target_pos;
     struct  stack   *next;
-}stack;                
+}stack;
 
 // $ // ----------------------------------------------------------------- // # //
 //  Fonctions de type stack
@@ -78,8 +88,13 @@ booln    ft_isdup(char **av);
 //  Fonctions libft
 // $ // ----------------------------------------------------------------- // # //
 
+int        get_stacklen(stack **sta);
 int		ft_strlen(char *str);
+int     min_elem(stack **sta);
+int     max_elem(stack **sta);
 int     ft_atoi(char *nptr);
+int     ft_numlen(int n);
+void    give_target(stack *sta);
 
 // $ // ----------------------------------------------------------------- // # //
 

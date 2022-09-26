@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:54:30 by oscobou           #+#    #+#             */
-/*   Updated: 2022/09/24 11:49:17 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/09/26 14:03:47 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void    ft_sa(stack **sta)
     stack       *save;
     stack       *tmp;
 
-    if (!*st || (*st)->next == NULL)
+    if (!*sta || (*sta)->next == NULL)
         return ;
-    tmp = (*st);
-    (*st) = (*st)->next;
-    save = (*st)->next;
-    (*st)->next = tmp;
+    tmp = (*sta);
+    (*sta) = (*sta)->next;
+    save = (*sta)->next;
+    (*sta)->next = tmp;
     tmp->next = save;
 }
 
@@ -36,12 +36,12 @@ void    ft_sb(stack **stb)
     stack       *save;
     stack       *tmp;
 
-    if (!*st || (*st)->next == NULL)
+    if (!*stb || (*stb)->next == NULL)
         return ;
-    tmp = (*st);
-    (*st) = (*st)->next;
-    save = (*st)->next;
-    (*st)->next = tmp;
+    tmp = (*stb);
+    (*stb) = (*stb)->next;
+    save = (*stb)->next;
+    (*stb)->next = tmp;
     tmp->next = save;
 }
 

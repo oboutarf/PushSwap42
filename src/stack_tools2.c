@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_tools2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:04:30 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/24 11:19:05 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/09/26 15:12:30 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ booln   fill_stack(stack **stack_a, int ac, char **av)
 {
     while (ac > 0)
     {
-        *stack_a = elem_addto_stack(stack_a, ft_atoi(av[ac]), ac - 1);
+        (*stack_a) = elem_addto_stack(stack_a, ft_atoi(av[ac]), ac - 1);
         if (!ft_isnumber(av[ac]))
             return (clear_stack(*stack_a), 0);
         if (!(*stack_a))
@@ -80,11 +80,11 @@ void    print_stack(stack *st)
     if (is_stack_clear(st) == clear)
     {
         printf("->   stack is clear, nothing to display!\n");
-        return;
+        return ;
     }
     while (is_stack_clear(st) == unclear)
     {
-        printf("  %d    pos: %d, cost: %d\n", st->value, st->index, st->cost);
+        printf("  %d    index: %d, target_pos: %d\n", st->value, st->index, st->target_pos);
         st = st->next;
     }
     return ;

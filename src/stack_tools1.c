@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_tools1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:21:33 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/24 11:03:12 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/09/26 16:26:01 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ stack   *elem_addto_stack(stack **st, int x, int index)
     }
     element->value = x;
     element->index = index;
-    element->cost = 0;
+    //element->cost = 0;
     element->next = *st;
     *st = element;
     return (element);
@@ -79,15 +79,15 @@ void     ft_index(stack **st)
 {
     stack   *start;
     int     idx;
-    
+
     idx = 0;
-    start = *st;
-    while (*st != NULL)
+    start = (*st);
+    while ((*st) != NULL)
     {
         (*st)->index = idx++;
-        *st = (*st)->next;
+        (*st) = (*st)->next;
     }
-    *st = start;    // Important pour chaque liste permet de garder la position du pointeur//
+    (*st) = start;    // Important pour chaque liste permet de garder la position du pointeur//
 }
 
 // $ // ----------------------------------------------------------------- // # //

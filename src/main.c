@@ -3,37 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/24 11:42:33 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/09/26 17:53:08 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
+/* int     main(int ac, char **av)
+{
+    printf("\nMy number len is : %d\n\n", ft_numlen(435));
+    return (0);
+} */
+
 // $ // ----------------------------------------------------------------- // # //
 //	Prototype main avec les arguments
+// $ // ----------------------------------------------------------------- // # //
+
+// $ // ----------------------------------------------------------------- // # //
 // $ // ----------------------------------------------------------------- // # //
 
 int     main(int ac, char **av)
 {
 	printf("\n\n:Project: push_swap\n\n");
 
-	stack	*stack_a;											//->	initialisation de la pile a
-    stack   *stack_b;											//->	initialisation de la pile b
-	stack_a = NULL;												//->	La pile A prend la valeur "NULL"
-    stack_b = NULL;												//->	La pile B prend la valeur "NULL"
+	stack	*stack_a;											
+    stack   *stack_b;											
+	stack_a = NULL;												
+    stack_b = NULL;												
 
 
-    if (ft_isdup(av))											//->	Verification de possibles doublons dans les arguments
-        return (write(2, "error\n", 6), 0);						//->	Si la verification echoue on renvoi "error"
-    if (!(fill_stack(&stack_a, ac - 1, av)))					//->	Transvasement des arguments dans la stack A
-        return (write(2, "error\n", 6), 0);		    			//->	Si le transvasement echoue on renvoi "error"
+    if (ft_isdup(av))											
+        return (write(2, "error\n", 6), 0);
+    if (!(fill_stack(&stack_a, ac - 1, av)))
+        return (write(2, "error\n", 6), 0);
     //  ft_sa(&stack_a);
     
-    printf("0000000000000000000000000000000000000000\n\n");
+    printf("%d",get_stacklen(&stack_a));
     
+    printf("0000000000000000000000000000000000000000\n\n");
+
+    printf("%d", max_elem(&stack_a));    
+
+    printf("0000000000000000000000000000000000000000\n\n");
+    give_target(stack_a);
     print_stack(stack_a);
     printf("\n# ^ ------------------------------  1A #\n");
     printf("# | S T A C K  A  -------------------- #\n");
@@ -46,10 +61,13 @@ int     main(int ac, char **av)
 
     printf("0000000000000000000000000000000000000000\n\n");
 
-    ft_pb(&stack_a, &stack_b);
+    // ft_pb(&stack_a, &stack_b);
+	// ft_pb(&stack_a, &stack_b);
 	ft_pb(&stack_a, &stack_b);
 	ft_pb(&stack_a, &stack_b);
-	ft_pb(&stack_a, &stack_b);
+    ft_index(&stack_a);											
+    ft_index(&stack_b);											
+
     
 	print_stack(stack_a);
     printf("\n# ^ ------------------------------  2A #\n");
@@ -66,7 +84,7 @@ int     main(int ac, char **av)
     ft_index(&stack_a);											
     ft_index(&stack_b);											
 	//ft_rb(&stack_b);
-    ft_rrb(&stack_b);
+    //ft_ra(&stack_a);
     //ft_rra(&stack_a);
     print_stack(stack_a);							
 
@@ -86,9 +104,8 @@ int     main(int ac, char **av)
 }
 
 
-
-
-
+// $ // ----------------------------------------------------------------- // # //
+// $ // ----------------------------------------------------------------- // # //
 
 // $ // ----------------------------------------------------------------- // # //
 //      Explication des commandes autorisees pour le projet 

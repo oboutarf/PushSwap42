@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/26 17:53:54 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:51:22 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,15 @@ stack   *clear_stack(stack *st);
 //  Fonctions des commandes autorisees
 // $ // ----------------------------------------------------------------- // # //
 
+void    ft_sorta1(stack **sta, stack **stb, int n_elemA);
+void    ob_radix1(stack **sta, stack **stb);
+void    ob_radix2(stack **sta, stack **stb);
 void    ft_rrr(stack **sta, stack **stb);
 void    ft_pa(stack **sta, stack **stb);
 void    ft_pb(stack **sta, stack **stb);
 void    ft_rr(stack **sta, stack **stb);
 void	ft_ss(stack **sta, stack **stb);
+void    give_target(stack *sta);
 void    print_stack(stack *st);
 void    ft_index(stack **st);
 void    ft_rra(stack **sta);
@@ -88,13 +92,13 @@ booln    ft_isdup(char **av);
 //  Fonctions libft
 // $ // ----------------------------------------------------------------- // # //
 
-int        get_stacklen(stack **sta);
-int		ft_strlen(char *str);
-int     min_elem(stack **sta);
+int     get_stacklen(stack **sta);
 int     max_elem(stack **sta);
+int     min_elem(stack **sta);
+int     find_zemidl(stack **sta);
+int		ft_strlen(char *str);
 int     ft_atoi(char *nptr);
 int     ft_numlen(int n);
-void    give_target(stack *sta);
 
 // $ // ----------------------------------------------------------------- // # //
 

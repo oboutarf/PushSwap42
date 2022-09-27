@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:04:30 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/26 15:12:30 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:38:26 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // $ // ----------------------------------------------------------------- // # //
 
 stack   *create_new_stack(void)
-{ 
+{
     return (NULL);
 }
 
@@ -84,7 +84,7 @@ void    print_stack(stack *st)
     }
     while (is_stack_clear(st) == unclear)
     {
-        printf("  %d    index: %d, target_pos: %d\n", st->value, st->index, st->target_pos);
+        printf("  %d    target_pos: %d, index: %d\n", st->value, st->target_pos, st->index);
         st = st->next;
     }
     return ;

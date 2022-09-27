@@ -3,17 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+         #
+#    By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/20 16:14:30 by oboutarf          #+#    #+#              #
-#    Updated: 2022/09/22 22:19:01 by oscobou          ###   ########.fr        #
+#    Updated: 2022/09/27 12:17:38 by oboutarf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 			= push_swap
 
 SRCS 			= src/main.c src/stack_tools1.c src/commands.c \
-				src/stack_tools2.c src/stack_tools3.c 
+				src/stack_tools2.c src/stack_tools3.c 		\
+				src/algo.c 								\
 
 OPTIONS			= -c -I.
 

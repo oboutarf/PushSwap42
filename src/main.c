@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/26 17:53:08 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:49:45 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,32 @@ int     main(int ac, char **av)
     stack   *stack_b;											
 	stack_a = NULL;												
     stack_b = NULL;												
-
+    
+    // test = find_zemidl(&stack_a);
+    // printf("\nMy mid value is -> %d\n\n", test->value);
 
     if (ft_isdup(av))											
         return (write(2, "error\n", 6), 0);
     if (!(fill_stack(&stack_a, ac - 1, av)))
         return (write(2, "error\n", 6), 0);
     //  ft_sa(&stack_a);
-    
-    printf("%d",get_stacklen(&stack_a));
-    
-    printf("0000000000000000000000000000000000000000\n\n");
-
-    printf("%d", max_elem(&stack_a));    
-
-    printf("0000000000000000000000000000000000000000\n\n");
     give_target(stack_a);
+
+    // printf("%d",get_stacklen(&stack_a));
+    
+    printf("0000000000000000000000000000000000000000\n\n");
+
+    // printf("\n%d\n\n", max_elem(&stack_a));
+    // printf("\nM%d\n\n", find_zemidl(&stack_a));
+
+    printf("0000000000000000000000000000000000000000\n\n");
+    
+    // ob_radix1(&stack_a, &stack_b);
+
+    
+    give_target(stack_a);
+    
+    
     print_stack(stack_a);
     printf("\n# ^ ------------------------------  1A #\n");
     printf("# | S T A C K  A  -------------------- #\n");
@@ -61,14 +71,22 @@ int     main(int ac, char **av)
 
     printf("0000000000000000000000000000000000000000\n\n");
 
+    ob_radix1(&stack_a, &stack_b);
+    ob_radix2(&stack_a, &stack_b);
     // ft_pb(&stack_a, &stack_b);
 	// ft_pb(&stack_a, &stack_b);
-	ft_pb(&stack_a, &stack_b);
-	ft_pb(&stack_a, &stack_b);
+	// ft_pb(&stack_a, &stack_b);
+	// ft_pb(&stack_a, &stack_b);
+    // ft_ra(&stack_a);
+    // ft_ra(&stack_a);
+    // ft_ra(&stack_a);
+    // ft_ra(&stack_a);
+    // ft_ra(&stack_a);
     ft_index(&stack_a);											
     ft_index(&stack_b);											
 
-    
+    // ft_sorta1(&stack_a, &stack_b);
+
 	print_stack(stack_a);
     printf("\n# ^ ------------------------------  2A #\n");
     printf("# | S T A C K  A  -------------------- #\n");
@@ -84,7 +102,11 @@ int     main(int ac, char **av)
     ft_index(&stack_a);											
     ft_index(&stack_b);											
 	//ft_rb(&stack_b);
-    //ft_ra(&stack_a);
+    // ft_ra(&stack_a);
+    // ft_ra(&stack_a);
+    // ft_ra(&stack_a);
+    // ft_ra(&stack_a);
+    // ft_ra(&stack_a);
     //ft_rra(&stack_a);
     print_stack(stack_a);							
 

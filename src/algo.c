@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:42:07 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/27 16:51:16 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/28 08:12:44 by oscobou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int     count_number(stack **sta, int n_len)
 void    ob_radix1(stack **sta, stack **stb)
 {
     int     stacksize = 0;
-    
+
     stacksize = count_number(sta, 1);
     while ((*sta)->next != NULL && stacksize != 0)
     {
@@ -73,27 +73,7 @@ void    ob_radix1(stack **sta, stack **stb)
             stacksize--;
         }
     }
-    // ft_sorta1(sta, stb, get_stacklen(sta));
 }
-
-// $ // ----------------------------------------------------------------- // # //
-
-void    ft_sorta1(stack **sta, stack **stb, int n_elemA)
-{
-    stack   **tmp1;
-    stack   **tmp2;
-
-    
-    
-}
-
-// $ // ----------------------------------------------------------------- // # //
-
-
-
-// $ // ----------------------------------------------------------------- // # //
-
-
 
 // $ // ----------------------------------------------------------------- // # //
 
@@ -117,11 +97,54 @@ void    ob_radix2(stack **sta, stack **stb)
 
 // $ // ----------------------------------------------------------------- // # //
 
-/*
-void    ob_radix3(stack **sta)
-{
 
-} */
+void    ob_radix3(stack **sta, stack **stb, int orig_elemA)
+{
+    int     stacksize = 0;
+
+    stacksize = count_number(sta, 3);
+    while ((*sta) && stacksize != 0)
+    {
+        if (!(ft_numlen((*sta)->value) == 3))
+            ft_ra(sta);
+        else
+        {
+            ft_pb(sta, stb);
+            stacksize--;
+            orig_elemA++;
+        }
+    }
+    //ft_sortb1(sta, stb ,orig_elemA);
+}
+
+// $ // ----------------------------------------------------------------- // # //
+
+void    ft_sortb1(stack **sta, stack **stb, int orig_elemA)
+{
+    //stack   **tmp1;
+    // int     stacksize;
+    int     how_much;
+    stack   *start;
+    stack   **tmp2;
+    
+    //tmp1 = sta;
+    tmp2 = stb;
+    how_much = count_number(stb, 3);
+    while (how_much != 0)
+    {
+        start = (*stb);
+        while ((*tmp2)->target_pos == orig_elemA)
+        {
+            ft_pa(sta, stb);
+            how_much--;
+        }
+        if (ft_numlen((*stb)->next->value) == 2)
+        {
+            (*stb) = start;
+        }
+    }
+}
+
 
 // $ // ----------------------------------------------------------------- // # //
 // $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/27 16:51:22 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/28 08:11:45 by oscobou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,6 @@ typedef enum booln
     unclear,
     clear
 }booln;
-
-
-
-/* typedef struct elemstack
-{
-    int                 ;
-    int                 ;
-    struct  elemstack    *next;
-}; */
-
 
 // $ // ----------------------------------------------------------------- // # //
 //  Structure des piles A et B
@@ -61,9 +51,10 @@ stack   *clear_stack(stack *st);
 //  Fonctions des commandes autorisees
 // $ // ----------------------------------------------------------------- // # //
 
-void    ft_sorta1(stack **sta, stack **stb, int n_elemA);
-void    ob_radix1(stack **sta, stack **stb);
+void    ft_sortb1(stack **sta, stack **stb, int orig_elemA);
+void    ob_radix3(stack **sta, stack **stb, int orig_elemA);
 void    ob_radix2(stack **sta, stack **stb);
+void    ob_radix1(stack **sta, stack **stb);
 void    ft_rrr(stack **sta, stack **stb);
 void    ft_pa(stack **sta, stack **stb);
 void    ft_pb(stack **sta, stack **stb);

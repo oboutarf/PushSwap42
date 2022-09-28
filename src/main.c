@@ -3,20 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/27 16:49:45 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/27 23:09:57 by oscobou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
-/* int     main(int ac, char **av)
-{
-    printf("\nMy number len is : %d\n\n", ft_numlen(435));
-    return (0);
-} */
 
 // $ // ----------------------------------------------------------------- // # //
 //	Prototype main avec les arguments
@@ -31,18 +26,20 @@ int     main(int ac, char **av)
 
 	stack	*stack_a;											
     stack   *stack_b;											
+    int     orig_elemA;
 	stack_a = NULL;												
     stack_b = NULL;												
     
     // test = find_zemidl(&stack_a);
     // printf("\nMy mid value is -> %d\n\n", test->value);
-
     if (ft_isdup(av))											
         return (write(2, "error\n", 6), 0);
     if (!(fill_stack(&stack_a, ac - 1, av)))
         return (write(2, "error\n", 6), 0);
     //  ft_sa(&stack_a);
     give_target(stack_a);
+    orig_elemA = get_stacklen(&stack_a);
+    
 
     // printf("%d",get_stacklen(&stack_a));
     
@@ -50,15 +47,23 @@ int     main(int ac, char **av)
 
     // printf("\n%d\n\n", max_elem(&stack_a));
     // printf("\nM%d\n\n", find_zemidl(&stack_a));
-
     printf("0000000000000000000000000000000000000000\n\n");
-    
-    // ob_radix1(&stack_a, &stack_b);
 
+    print_stack(stack_a);
+    printf("\n# ^ ------------------------------  0A #\n");
+    printf("# | S T A C K  A  -------------------- #\n");
+	printf("# | ---------------------------------- #\n\n\n\n\n");
+    
+    print_stack(stack_b);
+    printf("\n# ^ ------------------------------  0B #\n");
+	printf("# |  S T A C K  B  ------------------- #\n");
+
+    printf("\n\n0000000000000000000000000000000000000000\n\n");
     
     give_target(stack_a);
-    
-    
+
+    ob_radix1(&stack_a, &stack_b);
+
     print_stack(stack_a);
     printf("\n# ^ ------------------------------  1A #\n");
     printf("# | S T A C K  A  -------------------- #\n");
@@ -69,25 +74,11 @@ int     main(int ac, char **av)
 	printf("# |  S T A C K  B  ------------------- #\n");	
 	printf("# | ---------------------------------- #\n\n");
 
-    printf("0000000000000000000000000000000000000000\n\n");
+    printf("\n0000000000000000000000000000000000000000\n\n");
 
-    ob_radix1(&stack_a, &stack_b);
     ob_radix2(&stack_a, &stack_b);
-    // ft_pb(&stack_a, &stack_b);
-	// ft_pb(&stack_a, &stack_b);
-	// ft_pb(&stack_a, &stack_b);
-	// ft_pb(&stack_a, &stack_b);
-    // ft_ra(&stack_a);
-    // ft_ra(&stack_a);
-    // ft_ra(&stack_a);
-    // ft_ra(&stack_a);
-    // ft_ra(&stack_a);
-    ft_index(&stack_a);											
-    ft_index(&stack_b);											
-
-    // ft_sorta1(&stack_a, &stack_b);
-
-	print_stack(stack_a);
+    
+    print_stack(stack_a);
     printf("\n# ^ ------------------------------  2A #\n");
     printf("# | S T A C K  A  -------------------- #\n");
 	printf("# | ---------------------------------- #\n\n\n\n\n");
@@ -95,33 +86,54 @@ int     main(int ac, char **av)
     print_stack(stack_b);
     printf("\n# ^ ------------------------------  2B #\n");
 	printf("# |  S T A C K  B  ------------------- #\n");	
-	printf("# | ---------------------------------- #\n\n");
 
-    printf("0000000000000000000000000000000000000000\n\n");
+    printf("\n\n0000000000000000000000000000000000000000\n\n");
+
+    ob_radix3(&stack_a, &stack_b, orig_elemA);
+
+    print_stack(stack_a);
+    printf("\n# ^ ------------------------------  3A #\n");
+    printf("# | S T A C K  A  -------------------- #\n");
+	printf("# | ---------------------------------- #\n\n\n\n\n");
+    
+    print_stack(stack_b);
+    printf("\n# ^ ------------------------------  3B #\n");
+	printf("# |  S T A C K  B  ------------------- #\n");
+
+    printf("\n\n0000000000000000000000000000000000000000\n\n");
 
     ft_index(&stack_a);											
     ft_index(&stack_b);											
-	//ft_rb(&stack_b);
-    // ft_ra(&stack_a);
-    // ft_ra(&stack_a);
-    // ft_ra(&stack_a);
-    // ft_ra(&stack_a);
-    // ft_ra(&stack_a);
-    //ft_rra(&stack_a);
-    print_stack(stack_a);							
 
-	printf("\n# ^ ------------------------------  3A #\n");
+	print_stack(stack_a);
+    printf("\n# ^ ------------------------------  4A #\n");
+    printf("# | S T A C K  A  -------------------- #\n");
+	printf("# | ---------------------------------- #\n\n\n\n\n");
+    
+    print_stack(stack_b);
+    printf("\n# ^ ------------------------------  4B #\n");
+	printf("# |  S T A C K  B  ------------------- #\n");	
+	printf("# | ---------------------------------- #\n\n");
+
+    printf("\n0000000000000000000000000000000000000000\n\n");
+
+    ft_index(&stack_b);			//      rajouter en paramètres
+    ft_index(&stack_a);		    //        les stacks A & B    
+                                 //         à 'ft_index'
+    print_stack(stack_a);							
+	printf("\n# ^ ------------------------------  5A #\n");
     printf("# |  S T A C K  A  ------------------- #\n");
 	printf("# | ---------------------------------- #\n\n\n\n\n");
 
-	//  ft_index(&stack_a);
 	print_stack(stack_b);				
-	//clear_stack(stack_a);
-
-	printf("\n# ^ ------------------------------  3B #\n");
+	//clear_stack(stack_a)
+	printf("\n# ^ ------------------------------  5B #\n");
 	printf("# |  S T A C K  B  ------------------- #\n");	
-	printf("# | ---------------------------------- #\n\n\n\n\n\n\n");
-				
+	printf("# | ---------------------------------- #\n\n\n\n");
+    
+    printf(" 0000000000000000000000000000000000000000\n\n");
+    printf("000000000000000   E N D   0000000000000000\n\n");
+    printf(" 0000000000000000000000000000000000000000\n\n");
     return (1);
 }
 

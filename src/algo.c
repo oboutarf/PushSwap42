@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:42:07 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/28 08:12:44 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/09/28 12:33:57 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,9 @@ void    ob_radix2(stack **sta, stack **stb)
 // $ // ----------------------------------------------------------------- // # //
 
 
-void    ob_radix3(stack **sta, stack **stb, int orig_elemA)
+void    ob_radix3(stack **sta, stack **stb, int max_index)
 {
+    int     orig_elem3 = 0;
     int     stacksize = 0;
 
     stacksize = count_number(sta, 3);
@@ -111,40 +112,75 @@ void    ob_radix3(stack **sta, stack **stb, int orig_elemA)
         {
             ft_pb(sta, stb);
             stacksize--;
-            orig_elemA++;
+            orig_elem3++;
         }
     }
-    //ft_sortb1(sta, stb ,orig_elemA);
+    ft_sortb1(sta, stb ,orig_elem3, max_index);
 }
 
 // $ // ----------------------------------------------------------------- // # //
 
-void    ft_sortb1(stack **sta, stack **stb, int orig_elemA)
+void    ft_sortb1(stack **sta, stack **stb, int orig_elem3, int max_index)
 {
-    //stack   **tmp1;
-    // int     stacksize;
-    int     how_much;
-    stack   *start;
     stack   **tmp2;
-    
-    //tmp1 = sta;
+
     tmp2 = stb;
-    how_much = count_number(stb, 3);
-    while (how_much != 0)
+    while (orig_elem3 > 0)
     {
-        start = (*stb);
-        while ((*tmp2)->target_pos == orig_elemA)
+        if (!((*tmp2)->target_pos == max_index))
+            ft_rb(stb);
+        else
         {
             ft_pa(sta, stb);
-            how_much--;
-        }
-        if (ft_numlen((*stb)->next->value) == 2)
+            orig_elem3--;
+            max_index--;
+        }    
+    }
+    ft_sortb2(sta, stb, max_index);
+}
+
+void    ft_sortb2(stack **sta, stack **stb, int max_index)
+{
+    stack   **tmp2;
+    int     orig_elem2;
+
+    tmp2 = stb;
+    orig_elem2 = 0;
+    orig_elem2 = count_number(stb, 2);
+    while (orig_elem2 > 0)
+    {
+        if (!((*tmp2)->target_pos == max_index))
+            ft_rb(stb);
+        else
         {
-            (*stb) = start;
+            ft_pa(sta, stb);
+            orig_elem2--;
+            max_index--;
+        }
+    }
+    ft_sortb3(sta, stb, max_index);
+}
+
+void    ft_sortb3(stack **sta, stack **stb, int max_index)
+{
+    stack   **tmp2;
+    int     orig_elem1;
+
+    tmp2 = stb;
+    orig_elem1 = 0;
+    orig_elem1 = count_number(stb, 1);
+    while (orig_elem1 > 0)
+    {
+        if (!((*tmp2)->target_pos == max_index))
+            ft_rb(stb);
+        else
+        {
+            ft_pa(sta, stb);
+            orig_elem1--;
+            max_index--;
         }
     }
 }
-
 
 // $ // ----------------------------------------------------------------- // # //
 // $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //

@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:04:30 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/27 16:38:26 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:51:32 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ booln   fill_stack(stack **stack_a, int ac, char **av)
 
 void    print_stack(stack *st)
 {
+	stack	 *start;
+	
+	start = st;
     if (is_stack_clear(st) == clear)
     {
         printf("->   stack is clear, nothing to display!\n");
@@ -87,6 +90,7 @@ void    print_stack(stack *st)
         printf("  %d    target_pos: %d, index: %d\n", st->value, st->target_pos, st->index);
         st = st->next;
     }
+	st = start;
     return ;
 }
 

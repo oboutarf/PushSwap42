@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/28 08:11:45 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/09/28 12:34:11 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ stack   *clear_stack(stack *st);
 //  Fonctions des commandes autorisees
 // $ // ----------------------------------------------------------------- // # //
 
-void    ft_sortb1(stack **sta, stack **stb, int orig_elemA);
-void    ob_radix3(stack **sta, stack **stb, int orig_elemA);
+void    ft_sortb1(stack **sta, stack **stb, int orig_elem3, int max_index);
+void    ft_sortb2(stack **sta, stack **stb, int max_index);
+void    ft_sortb3(stack **sta, stack **stb, int max_index);
+void    ob_radix3(stack **sta, stack **stb, int max_index);
 void    ob_radix2(stack **sta, stack **stb);
 void    ob_radix1(stack **sta, stack **stb);
 void    ft_rrr(stack **sta, stack **stb);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:54:30 by oscobou           #+#    #+#             */
-/*   Updated: 2022/09/27 20:43:29 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/09/28 11:33:53 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void    ft_sa(stack **sta)
 
     if (!*sta || (*sta)->next == NULL)
         return ;
+    write(1, "sa\n", 3);
     tmp = (*sta);
     (*sta) = (*sta)->next;
     save = (*sta)->next;
@@ -38,6 +39,7 @@ void    ft_sb(stack **stb)
 
     if (!*stb || (*stb)->next == NULL)
         return ;
+    write(1, "sb\n", 3);
     tmp = (*stb);
     (*stb) = (*stb)->next;
     save = (*stb)->next;
@@ -60,6 +62,7 @@ void    ft_pb(stack **sta, stack **stb)
 
     if (*sta == NULL)
         return ;
+    write(1, "pb\n", 3);
     if (*stb == NULL)
     {
         (*stb) = (*sta);
@@ -81,6 +84,7 @@ void    ft_pa(stack **sta, stack **stb)
 
     if (*stb == NULL)
         return ;
+    write(1, "pa\n", 3);
     if (*sta == NULL)
     {
         (*sta) = (*stb);
@@ -103,6 +107,7 @@ void    ft_ra(stack **sta)
 
     if (!(*sta))
         return ;
+    write(1, "ra\n", 3);
     save_a = (*sta);
     tmp = (*sta)->next;
     // printf("tmp %d\n", (*sta)->value);
@@ -123,6 +128,7 @@ void    ft_rb(stack **stb)
 
     if (!(*stb))
         return ;
+    write(1, "rb\n", 3);
     save_b = (*stb);
     tmp = (*stb)->next;
     while ((*stb)->next != NULL)
@@ -153,6 +159,7 @@ void    ft_rra(stack **sta)
 
     if (!(*sta))
         return ;
+    write(1, "rra\n", 3);
     sta_save = sta;
     tmp = (*sta);
     while ((*sta_save)->next->next != NULL)
@@ -175,6 +182,7 @@ void    ft_rrb(stack **stb)
 
     if (!(*stb))
         return ;
+    write(1, "rrb\n", 3);
     stb_save = stb;
     tmp = (*stb);
     while ((*stb_save)->next->next != NULL)

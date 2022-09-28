@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/28 12:30:19 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:57:56 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 int     main(int ac, char **av)
 {
+    printf("debut: \n");
 	/* printf("\n\n:Project: push_swap\n\n"); */
 
 	stack	*stack_a;											

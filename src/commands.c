@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:54:30 by oscobou           #+#    #+#             */
-/*   Updated: 2022/09/28 11:33:53 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:01:59 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ void    ft_rrb(stack **stb)
 
     if (!(*stb))
         return ;
-    write(1, "rrb\n", 3);
+    write(1, "rrb\n", 4);
     stb_save = stb;
     tmp = (*stb);
     while ((*stb_save)->next->next != NULL)

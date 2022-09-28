@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:42:07 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/28 12:33:57 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/28 16:53:52 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,22 +122,87 @@ void    ob_radix3(stack **sta, stack **stb, int max_index)
 
 void    ft_sortb1(stack **sta, stack **stb, int orig_elem3, int max_index)
 {
+    // int     tmp_orig3 = 0;
+    stack   **tmp2;
+    int     i = 0;
+
+    i = 50;
+    tmp2 = stb;
+    while (orig_elem3 > 0)
+    {
+        // while (ft_numlen((*tmp2)->value) == 3)
+        while (i >= 0)
+        {
+            if ((*tmp2)->target_pos == max_index)
+            {
+                ft_pa(sta, stb);
+                orig_elem3--;
+                max_index--;
+                i--;
+            }
+            ft_rb(stb);
+        }
+        while (i >= 0)
+        {
+            if ((*tmp2)->target_pos == max_index)
+            {
+                ft_pa(sta, stb);    
+                orig_elem3--;
+                max_index--;
+                i--;
+            }
+            ft_rrb(stb);
+            ft_index(stb);
+        }
+    }
+    //ft_sortb2(sta, stb, max_index);
+}
+
+// $ // ----------------------------------------------------------------- // # //
+// $ //   ----------------------- O R I G ----------------------------- // # //
+// $ // ----------------------------------------------------------------- // # //
+
+
+/* void    ft_sortb1(stack **sta, stack **stb, int orig_elem3, int max_index)
+{
+    int     tmp_orig3 = 0;
     stack   **tmp2;
 
     tmp2 = stb;
     while (orig_elem3 > 0)
     {
-        if (!((*tmp2)->target_pos == max_index))
+        if (!(ft_numlen((*tmp2)->next->value) == 2 && (*tmp2)->target_pos == max_index))
             ft_rb(stb);
-        else
+        if ((*tmp2)->target_pos == max_index)
         {
             ft_pa(sta, stb);
             orig_elem3--;
             max_index--;
-        }    
+        }
+        if (ft_numlen((*tmp2)->next->value == 2))
+        {
+            tmp_orig3 = orig_elem3;
+            while (tmp_orig3 > 0)
+            {
+                if ((*tmp2)->target_pos == max_index)
+                {
+                    ft_pa(sta, stb);
+                    tmp_orig3--;
+                    max_index--;
+                    orig_elem3--;
+                }
+                ft_rrb(stb);
+                if ((*tmp2)->index == 0)
+                    break ;
+            }
+        }
     }
     ft_sortb2(sta, stb, max_index);
-}
+} */
+
+// $ // ----------------------------------------------------------------- // # //
+// $ // ----------------------------------------------------------------- // # //
+// $ // ----------------------------------------------------------------- // # //
 
 void    ft_sortb2(stack **sta, stack **stb, int max_index)
 {
@@ -160,6 +225,8 @@ void    ft_sortb2(stack **sta, stack **stb, int max_index)
     }
     ft_sortb3(sta, stb, max_index);
 }
+
+// $ // ----------------------------------------------------------------- // # //
 
 void    ft_sortb3(stack **sta, stack **stb, int max_index)
 {
@@ -184,3 +251,30 @@ void    ft_sortb3(stack **sta, stack **stb, int max_index)
 
 // $ // ----------------------------------------------------------------- // # //
 // $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //
+
+
+
+
+
+
+
+
+
+
+/*
+    stack   **tmp2;
+
+    tmp2 = stb;
+    while (orig_elem3 > 0)
+    {
+        if (!((*tmp2)->target_pos == max_index))
+            ft_rb(stb);
+        else
+        {
+            ft_pa(sta, stb);
+            orig_elem3--;
+            max_index--;
+        }    
+    }
+    ft_sortb2(sta, stb, max_index);
+*/

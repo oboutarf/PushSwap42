@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/28 15:57:56 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:09:08 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,14 @@
 
 int     main(int ac, char **av)
 {
-    printf("debut: \n");
+    // printf("debut: \n");
 	/* printf("\n\n:Project: push_swap\n\n"); */
-
 	stack	*stack_a;											
     stack   *stack_b;											
-    int     max_index;
+    int     size = 0;
 	stack_a = NULL;												
     stack_b = NULL;												
-    
+
     // test = find_zemidl(&stack_a);
     // printf("\nMy mid value is -> %d\n\n", test->value);
     if (ft_isdup(av))											
@@ -39,9 +38,8 @@ int     main(int ac, char **av)
         return (write(2, "error\n", 6), 0);
     //  ft_sa(&stack_a);
     give_target(stack_a);
-    max_index = get_stacklen(&stack_a);
+    size = get_stacklen(&stack_a);
     
-
     // printf("%d",get_stacklen(&stack_a));
     
     // printf("0000000000000000000000000000000000000000\n\n");
@@ -62,8 +60,7 @@ int     main(int ac, char **av)
     printf("\n\n0000000000000000000000000000000000000000\n\n"); */
     
     give_target(stack_a);
-
-    ob_radix1(&stack_a, &stack_b);
+    ob_radix1(&stack_a, &stack_b, size);
 
     /* print_stack(stack_a);
     printf("\n# ^ ------------------------------  1A #\n");
@@ -77,7 +74,7 @@ int     main(int ac, char **av)
 
     printf("\n0000000000000000000000000000000000000000\n\n"); */
 
-    ob_radix2(&stack_a, &stack_b);
+    // ob_radix2(&stack_a, &stack_b);
     
     /* print_stack(stack_a);
     printf("\n# ^ ------------------------------  2A #\n");
@@ -90,7 +87,7 @@ int     main(int ac, char **av)
 
     printf("\n\n0000000000000000000000000000000000000000\n\n"); */
 
-    ob_radix3(&stack_a, &stack_b, max_index);
+    // ob_radix3(&stack_a, &stack_b);
 
     /* print_stack(stack_a);
     printf("\n# ^ ------------------------------  3A #\n");
@@ -135,9 +132,9 @@ int     main(int ac, char **av)
     printf(" 0000000000000000000000000000000000000000\n\n");
     printf("000000000000000   E N D   0000000000000000\n\n");
     printf(" 0000000000000000000000000000000000000000\n\n"); */
-    print_stack(stack_a);
-    printf("\n\n");
-    print_stack(stack_b);
+    // print_stack(stack_a);
+    // printf("\n\n");
+    // print_stack(stack_b);
     return (1);
 }
 

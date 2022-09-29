@@ -1,0 +1,201 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    brainstorm_pswap.txt                               :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/29 14:44:41 by oboutarf          #+#    #+#              #
+#    Updated: 2022/09/29 16:02:57 by oboutarf         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+Decouper la stack A en 8 chunks au maximum:
+->  -une de 1 a 9 (while(count_number(orig_elem) != 0) ---> alors nous ne faisons rien)
+    -une de 10 a 99 (while(count_number(orig_elem) != 0) ---> alors nous ne faisons rien)
+    -une de 100 a 199 (while(count_number(orig_elem) != 0) ---> alors nous ne faisons rien)
+    -une de 200 a 299 (while(count_number(orig_elem) != 0) ---> alors nous ne faisons rien)
+    -une de 300 a 399 (while(count_number(orig_elem) != 0) ---> alors nous ne faisons rien)
+    -une de 400 a 500 (while(count_number(orig_elem) != 0) ---> alors nous ne faisons rien)
+
+Ensuite passons a l'etape suivante:
+->  Une fois notre pile B ordonnee tels que 500? > ... > 400? > ... > 300? > ... > 200? > ... > 100? > ... > 10? > ... > 1?
+                                                    |            |            |            |           |            |
+                                                 4centaine    3centaine    2centaine    centaine     dizaine      unite
+
+        Mecanique du deplacement dans les sous-listes avec des 'ft_rb' et des 'ft_rrb'
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|Explication:       Nous allons d'abord commencer par des 'ft_rb' avec comme condition     |||
+||||||||||| que lorsque nous tomberons sur une valeur strictement < 400, nous continu-     ||| 
+|||||||||| erons a chercher l' 'index_max' mais seulement cette fois nous changerons d     |||
+||||||||| -e sens en appliquant des 'ft_rrb' jusqu'a ce que ft_numlen((*tmp2)->value) == 1 |||
+|||||||| ensuite des que cette operation est 'true' nous sortons de la boucle et reprenons
+||||||| avec notre conditions d'avant et ce, jusqu'a ce que orig_elem? == 0.
+||||||
+||||| Et nous appliquons ce process jusqu'a ce que la pile soit triee entierement.
+||||
+|||
+||
+|
+
+
+
+
+
+
+
+
+
+
+
+/*
+    stack   **tmp2;
+
+    tmp2 = stb;
+    while (orig_elem3 > 0)
+    {
+        if (!((*tmp2)->target_pos == max_index))
+            ft_rb(stb);
+        else
+        {
+            ft_pa(sta, stb);
+            orig_elem3--;
+            max_index--;
+        }    
+    }
+    ft_sortb2(sta, stb, max_index);
+*/
+
+
+// $ // ----------------------------------------------------------------- // # //
+// $ //   ----------------------- O R I G ----------------------------- // # //
+// $ // ----------------------------------------------------------------- // # //
+
+
+/* void    ft_sortb1(stack **sta, stack **stb, int orig_elem3, int max_index)
+{
+    int     tmp_orig3 = 0;
+    stack   **tmp2;
+
+    tmp2 = stb;
+    while (orig_elem3 > 0)
+    {
+        if (!(ft_numlen((*tmp2)->next->value) == 2 && (*tmp2)->target_pos == max_index))
+            ft_rb(stb);
+        if ((*tmp2)->target_pos == max_index)
+        {
+            ft_pa(sta, stb);
+            orig_elem3--;
+            max_index--;
+        }
+        if (ft_numlen((*tmp2)->next->value == 2))
+        {
+            tmp_orig3 = orig_elem3;
+            while (tmp_orig3 > 0)
+            {
+                if ((*tmp2)->target_pos == max_index)
+                {
+                    ft_pa(sta, stb);
+                    tmp_orig3--;
+                    max_index--;
+                    orig_elem3--;
+                }
+                ft_rrb(stb);
+                if ((*tmp2)->index == 0)
+                    break ;
+            }
+        }
+    }
+    ft_sortb2(sta, stb, max_index);
+} */
+
+/* void    ft_sortb1(stack **sta, stack **stb, int orig_elem3, int max_index)
+{
+    // int     tmp_orig3 = 0;
+    stack   **tmp2;
+    int     i = 0;
+
+    i = 50;
+    tmp2 = stb;
+    while (orig_elem3 > 0)
+    {
+        // while (ft_numlen((*tmp2)->value) == 3)
+        while ()
+        {
+            if ((*tmp2)->target_pos == max_index)
+            {
+                ft_pa(sta, stb);
+                orig_elem3--;
+                max_index--;
+            }
+            ft_rb(stb);
+        }
+        while ()
+        {
+            ft_index(stb);
+            if ((*tmp2)->target_pos == max_index)
+            {
+                ft_pa(sta, stb);    
+                orig_elem3--;
+                max_index--;
+            }
+            ft_rrb(stb);
+        }
+    }
+    //ft_sortb2(sta, stb, max_index);
+} */
+
+// $ // -------------------------+++++++++------------------------------+ // # //
+// $ //   ---------------------+++ E N D +++---------------------------+ // # //
+// $ // -------------------------+++++++++------------------------------+ // # //
+
+
+
+
+
+boolean    rotate_b(stack **stb, int max_index, int orig_elem3)
+{
+    stack   **tmp2;
+
+    tmp2 = stb;
+    while (ft_numlen((*tmp2)->value) == 3)
+    {
+        if ((*tmp2)->target_pos == max_index)
+            return (true);
+        ft_rb(stb);
+    }
+    if (orig_elem3 > 0)
+        return (false); 
+    return (false);
+}
+
+boolean    revrotate_b(stack **stb, int max_index, int orig_elem3)
+{
+    stack   **tmp2;
+
+    tmp2 = stb;
+    while (ft_numlen((*tmp2)->value) != 1)
+    {
+        if ((*tmp2)->target_pos == max_index)
+            return (true);
+        ft_rrb(stb);
+    }
+    if (orig_elem3 > 0)
+        return (false); 
+    return (false);
+}
+
+void    ft_sortb1(stack **sta, stack **stb, int orig_elem3, int max_index)
+{
+    while (orig_elem3 > 0)
+    {
+        if (rotate_b(stb, max_index, orig_elem3) || revrotate_b(stb, max_index, orig_elem3))
+        {
+            ft_pa(sta, stb);
+            orig_elem3--;
+            max_index--;
+        }
+    }    
+    ft_sortb2(sta, stb , max_index);
+}

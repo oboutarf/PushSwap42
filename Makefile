@@ -6,7 +6,7 @@
 #    By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/20 16:14:30 by oboutarf          #+#    #+#              #
-#    Updated: 2022/09/27 12:17:38 by oboutarf         ###   ########.fr        #
+#    Updated: 2022/09/29 15:17:20 by oboutarf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME 			= push_swap
 
 SRCS 			= src/main.c src/stack_tools1.c src/commands.c \
 				src/stack_tools2.c src/stack_tools3.c 		\
-				src/algo.c 								\
+				src/algo1.c src/algo2.c 								\
 
 OPTIONS			= -c -I.
 

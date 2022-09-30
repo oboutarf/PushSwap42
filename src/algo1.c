@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:42:07 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/30 21:39:27 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/30 21:56:20 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int     count_ra(stack **sta, int orig, int size, int stacksize)
     stack   *tmp1;
     
     tmp1 = (*sta);
-    while (!(tmp1->target_pos >= (orig + 1) && tmp1->target_pos <= stacksize))
+    while (!(tmp1->target_pos >= orig + 1 && tmp1->target_pos <= stacksize))
     {
         if (count_next == size / 2)
             return (0);
@@ -173,7 +173,7 @@ void    ob_radix(stack **sta, stack **stb, int size)
     int     orig = 0;
     int     count_elem = 0;
 
-    stacksize = size / 25;
+    stacksize = size / 10;
     tmpstacksize = stacksize;
     while (size > 0)
     {

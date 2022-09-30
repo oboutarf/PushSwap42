@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/29 18:09:08 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:28:31 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,26 @@
 
 int     main(int ac, char **av)
 {
-    // printf("debut: \n");
 	/* printf("\n\n:Project: push_swap\n\n"); */
 	stack	*stack_a;											
     stack   *stack_b;											
     int     size = 0;
-	stack_a = NULL;												
+	int     b_size = 0;
+    int     chunksize = 0;
+    
+    stack_a = NULL;												
     stack_b = NULL;												
 
-    // test = find_zemidl(&stack_a);
+    
     // printf("\nMy mid value is -> %d\n\n", test->value);
     if (ft_isdup(av))											
         return (write(2, "error\n", 6), 0);
     if (!(fill_stack(&stack_a, ac - 1, av)))
         return (write(2, "error\n", 6), 0);
-    //  ft_sa(&stack_a);
     give_target(stack_a);
     size = get_stacklen(&stack_a);
-    
+    b_size = get_stacklen(&stack_a);
+    chunksize = b_size / 11;
     // printf("%d",get_stacklen(&stack_a));
     
     // printf("0000000000000000000000000000000000000000\n\n");
@@ -58,9 +60,13 @@ int     main(int ac, char **av)
 	printf("# |  S T A C K  B  ------------------- #\n");
 
     printf("\n\n0000000000000000000000000000000000000000\n\n"); */
-    
+
+
+
+
     give_target(stack_a);
-    ob_radix1(&stack_a, &stack_b, size);
+    ob_radix(&stack_a, &stack_b, size);
+    ft_sortb(&stack_a, &stack_b, b_size, chunksize);
 
     /* print_stack(stack_a);
     printf("\n# ^ ------------------------------  1A #\n");

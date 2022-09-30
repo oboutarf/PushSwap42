@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/29 20:25:37 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/30 13:46:16 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ stack   *clear_stack(stack *st);
 //  Fonctions des commandes autorisees
 // $ // ----------------------------------------------------------------- // # //
 
-void    ft_sortb1(stack **sta, stack **stb, int orig_elem6, int max_index);
 void    ft_sortb2(stack **sta, stack **stb, int orig_elem5, int max_index);
 void    ft_sortb3(stack **sta, stack **stb, int orig_elem4, int max_index);
 void    ft_sortb4(stack **sta, stack **stb, int orig_elem3, int max_index);
@@ -97,8 +96,12 @@ booln    ft_isnumber(char *str);
 booln    ft_isdup(char **av);
 
 
-boolean    rotate_b1(stack **stb, int max_index, int orig_elem6);
-boolean    revrotate_b1(stack **stb, int max_index, int orig_elem6);
+
+void       ft_sortb(stack **sta, stack **stb, int size, int len_chunk);
+boolean    revrotate_b(stack **stb, int size);
+boolean    rotate_b(stack **stb, int size, int len_chunk);
+
+
 boolean    rotate_b2(stack **stb, int max_index, int orig_elem5);
 boolean    revrotate_b2(stack **stb, int max_index, int orig_elem5);
 boolean    rotate_b3(stack **stb, int max_index, int orig_elem4);

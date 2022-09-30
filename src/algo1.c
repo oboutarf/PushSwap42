@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:42:07 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/29 20:37:34 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:28:35 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ int     count_number(stack **sta, int n_len)
 
 // $ // ----------------------------------------------------------------- // # //
 
+// $ // 110010110000111001011000011100101100001110010110000111001011000011 // # //
+// $ // -----------------------  o b__ radix  --------------------------- // # //
+// $ // 1001011000011100101100001110010110000111001011000011100101100001 // # //
+
 void    ob_radix(stack **sta, stack **stb, int size)
 {
     int     tmpstacksize;
@@ -65,14 +69,14 @@ void    ob_radix(stack **sta, stack **stb, int size)
     int     orig = 0;
     int     count_elem = 0;
 
-    stacksize = size / 6;
+    stacksize = size / 11;
     tmpstacksize = stacksize;
-    while (size >= 0)
+    while (size > 0)
     {
         count_elem = 0;
         while ((*sta)->next != NULL && count_elem != stacksize)
         {
-            if ((*sta)->target_pos >= orig && (*sta)->target_pos <= tmpstacksize)
+            if ((*sta)->target_pos >= (orig + 1) && (*sta)->target_pos <= tmpstacksize)
             {
                 ft_pb(sta, stb);
                 count_elem++;
@@ -88,52 +92,85 @@ void    ob_radix(stack **sta, stack **stb, int size)
                 // write(1, "", 5);
                 // tmpstacksize--;
 
-boolean    rotate_b1(stack **stb, int max_index, int orig_elem)
-{
-    stack   **tmp2;
 
+// $ // 110010110000111001011000011100101100001110010110000111001011000011 // # //
+// $ // -----------------------  s o r t b  ----------------------------- // # //
+// $ // 1001011000011100101100001110010110000111001011000011100101100001 // # //
+
+
+boolean    rotate_b(stack **stb, int size, int len_chunk)
+{
+	int		tmplen_chunk;
+    stack   **tmp2;
+    
     tmp2 = stb;
-    while (((*tmp2)->value / 100) % 10 == 5)
+    tmplen_chunk = len_chunk;
+    while (tmplen_chunk > 0)
     {
-        if ((*tmp2)->target_pos == max_index)
+        if ((*tmp2)->target_pos == size)
             return (true);
         ft_rb(stb);
+        tmplen_chunk--;
     }
-    if (orig_elem > 0)
+    if (len_chunk > 0)
         return (false);
     return (false);
 }
 
-boolean    revrotate_b1(stack **stb, int max_index, int orig_elem)
+boolean    revrotate_b(stack **stb, int size)
 {
     stack   **tmp2;
 
     tmp2 = stb;
-    while (size >= 0)
+    while (ft_numlen((*tmp2)->value) != 1)
     {
-        if ((*tmp2)->target_pos == max_index)
+        if ((*tmp2)->target_pos == size)
             return (true);
         ft_rrb(stb);
     }
-    if (orig_elem6 > 0)
-        return (false); 
     return (false);
 }
 
-
-void    ft_sortb1(stack **sta, stack **stb, int orig_elem, int max_index)
+void    ft_sortb(stack **sta, stack **stb, int size, int len_chunk)
 {
-    while (orig_elem > 0)
+    int     tmpsize = size;
+	
+
+    while (tmpsize > 0)
     {
-        if (rotate_b(stb, max_index, orig_elem6) || revrotate_b(stb, max_index, orig_elem6))
-        {
-            ft_pa(sta, stb);
-            orig_elem--;
-            max_index--;
+		if (rotate_b(stb, tmpsize, len_chunk) || revrotate_b(stb, tmpsize))
+		{
+			ft_pa(sta, stb);
+			tmpsize--;
         }
     }
-    ft_sortb2(sta, stb , max_index);
 }
+    // ft_sortb2(sta, stb , max_index);
+
+
+/* boolean    rotate_b(stack **stb, int size, int len_chunk)
+{
+    int     tmpsize = size;
+    int     tmplen_chunk;
+    
+    tmplen_chunk = len_chunk;
+    while ()    
+    {
+        if ((*sta)->target_pos == max_index)
+            return (true)
+        ft_rb()
+        chunk++;
+        return (false)
+    }
+}
+*/
+
+
+
+// $ // 110010110000111001011000011100101100001110010110000111001011000011 // # //
+// $ // -----------------------  +++++++++  ----------------------------- // # //
+// $ // 1001011000011100101100001110010110000111001011000011100101100001 // # //
+
 
 // $ // ----------------------------------------------------------------- // # //
 

@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:54:30 by oscobou           #+#    #+#             */
-/*   Updated: 2022/09/28 15:01:59 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/30 20:11:14 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,39 +138,30 @@ void    ft_rb(stack **stb)
     (*stb) = tmp; 
 }
 
-/*
 
 // $ // ----------------------------------------------------------------- // # //
 
-void    ft_rr(stack **sta, stack **stb)
-{
-    
-}
-
-*/
 
 // $ // ----------------------------------------------------------------- // # //
 
 void    ft_rra(stack **sta)
 {
-    stack   **sta_save;
-    stack   *save_bottom;
     stack   *tmp;
+    stack   *save_bottom;
+    stack   *tmp1;
 
     if (!(*sta))
         return ;
-    write(1, "rra\n", 3);
-    sta_save = sta;
-    tmp = (*sta);
-    while ((*sta_save)->next->next != NULL)
-        (*sta_save) = (*sta_save)->next;
-    save_bottom = (*sta_save)->next;
-    (*sta_save)->next = (NULL);
+    write(1, "rra\n", 4);
+    tmp1 = (*sta);
+    tmp = *sta;
+    while (tmp->next->next != NULL)
+        tmp = tmp->next;
+    save_bottom = tmp->next;
+    tmp->next = (NULL);
     (*sta) = save_bottom;
-    (*sta)->next = tmp;
+    (*sta)->next = tmp1;
 }
-
-
 
 // $ // ----------------------------------------------------------------- // # //
 

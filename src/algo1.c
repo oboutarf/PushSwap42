@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:42:07 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/30 15:28:35 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/09/30 21:39:27 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,152 @@ int     count_number(stack **sta, int n_len)
 // $ // -----------------------  o b__ radix  --------------------------- // # //
 // $ // 1001011000011100101100001110010110000111001011000011100101100001 // # //
 
+/* void    check_rra(stack **sta)
+{
+    stack   **sta_save;
+    stack   *save_bottom;
+    stack   *tmp;
+
+    if (!(*sta))
+        return ;
+    sta_save = sta;
+    tmp = (*sta);
+    while ((*sta_save)->next->next != NULL)
+        (*sta_save) = (*sta_save)->next;
+    save_bottom = (*sta_save)->next;
+    (*sta_save)->next = (NULL);
+    (*sta) = save_bottom;
+    (*sta)->next = tmp;
+} */
+/* int     count_rra(stack **sta, int orig, int size, int stacksize)
+{
+    int     count_prev = 0;
+    stack   *save;
+    stack   **tmp1;
+
+    tmp1 = sta;
+    save = (*tmp1);
+    while (!((*tmp1)->target_pos >= (orig + 1) && (*tmp1)->target_pos <= stacksize))
+    {
+        if (count_prev == size / 2)
+            return (-1);
+        check_rra(sta);
+        count_prev++;
+    }
+    (*tmp1) = save;
+    return (count_prev);
+} */
+/*
 void    ob_radix(stack **sta, stack **stb, int size)
+{
+    int     ra_visu = 0;
+    int     rra_visu = 0;
+    int     tmpstacksize;
+    int     stacksize;
+    int     orig = 0;
+    int     count_elem = 0;
+
+    stacksize = size / 3;
+    tmpstacksize = stacksize;
+    while (size > 0)
+    {
+        count_elem = 0;
+        while ((*sta)->next != NULL && count_elem != stacksize)
+        {
+            rra_visu = count_rra(sta, orig, size, stacksize);
+            ra_visu = count_ra(sta, orig, size, stacksize);
+            if (!(count_ra(sta, orig, size, stacksize) == -1))
+            {
+                while (ra_visu > 0)
+                {
+                    ft_ra(sta);
+                    ra_visu--;   
+                }
+                ft_pb(sta, stb);
+                count_elem++;
+                size--;
+            }
+            if (!(count_rra(sta, orig, size, stacksize) == -1))
+            {
+                while (rra_visu > 0)
+                {
+                    ft_rra(sta);
+                    rra_visu--;
+                }
+                ft_pb(sta, stb);
+                count_elem++;
+                size--;
+            }
+            rra_visu = 0;
+            ra_visu = 0;
+        }
+        orig += stacksize;
+        tmpstacksize += stacksize;
+    }
+}
+*/
+
+
+int     count_ra(stack **sta, int orig, int size, int stacksize)
+{
+    int     count_next = 0;
+    stack   *tmp1;
+    
+    tmp1 = (*sta);
+    while (!(tmp1->target_pos >= (orig + 1) && tmp1->target_pos <= stacksize))
+    {
+        if (count_next == size / 2)
+            return (0);
+        tmp1 = tmp1->next;
+        count_next++;
+    }
+    return (count_next);
+}
+
+
+void    ob_radix(stack **sta, stack **stb, int size)
+{
+    int     ra_visu = 0;
+    int     tmpstacksize;
+    int     stacksize;
+    int     orig = 0;
+    int     count_elem = 0;
+
+    stacksize = size / 25;
+    tmpstacksize = stacksize;
+    while (size > 0)
+    {
+        count_elem = 0;
+        while ((*sta)->next != NULL && count_elem != stacksize)
+        {
+            ra_visu = count_ra(sta, orig, size, stacksize);
+            if (ra_visu > 0)
+            {
+                while (ra_visu > 0)
+                {
+                    ft_ra(sta);
+                    ra_visu--;
+                }
+                ft_pb(sta, stb);
+                count_elem++;
+                size--;
+            }
+            else
+            {
+                while ((*sta)->target_pos > tmpstacksize)
+                    ft_rra(sta);
+                ft_pb(sta, stb);
+                count_elem++;
+                size--;
+            }
+            ra_visu = 0;
+        }
+        orig += stacksize;
+        tmpstacksize += stacksize;
+    }
+}
+
+/* void    ob_radix(stack **sta, stack **stb, int size)
 {
     int     tmpstacksize;
     int     stacksize;
@@ -88,7 +233,7 @@ void    ob_radix(stack **sta, stack **stb, int size)
         orig += stacksize;
         tmpstacksize += stacksize;
     }
-}
+} */
                 // write(1, "", 5);
                 // tmpstacksize--;
 

@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/30 21:04:53 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/04 03:20:49 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,24 @@ typedef enum boolean
 
 typedef struct stack
 {
+    int             final_cost1;
+    int             final_cost2;
+    int             target_pos;
     int             value;
     int             index;
-    int             target_pos;
+    int             rra;
+    int             rrb;
+    int             ra;
+    int             rb;
     struct  stack   *next;
 }stack;
 
 // $ // ----------------------------------------------------------------- // # //
 //  Fonctions de type stack
 // $ // ----------------------------------------------------------------- // # //
+
+void	give_rra_rrb(stack **sta, stack **stb);
+
 
 stack   *elem_addto_stack(stack **st, int x, int index);
 stack   *create_new_stack(void);
@@ -63,6 +72,13 @@ void    ft_sortb3(stack **sta, stack **stb, int orig_elem4, int max_index);
 void    ft_sortb4(stack **sta, stack **stb, int orig_elem3, int max_index);
 void    ft_sortb5(stack **sta, stack **stb, int orig_elem2, int max_index);
 void    ft_sortb6(stack **sta, stack **stb, int orig_elem1, int max_index);
+
+
+boolean	check_soluce(stack **sta, stack *tmp, int count_down, int count_up);
+void	ft_move(stack **sta, int count_down, int count_up);
+void    ft_div(stack **sta, stack **stb, int size);
+void	give_ra_rb(stack **sta, stack **stb);
+void	fnlcosts_mid_up(stack **sta, stack **stb, int mid);
 
 
 void    ob_radix(stack **sta, stack **stb, int size);

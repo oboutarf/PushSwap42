@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/30 21:31:41 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/04 03:24:07 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int     main(int ac, char **av)
     give_target(stack_a);
     size = get_stacklen(&stack_a);
     // b_size = get_stacklen(&stack_a);
-    // chunksize = b_size / 11;
+    // chunksize = b_size / 6;
     // printf("%d",get_stacklen(&stack_a));
     
     // printf("0000000000000000000000000000000000000000\n\n");
@@ -65,7 +65,16 @@ int     main(int ac, char **av)
 
 
     give_target(stack_a);
-    ob_radix(&stack_a, &stack_b, size);
+    ft_div(&stack_a, &stack_b, size);
+    fnlcosts_mid_up(&stack_a, &stack_b, size / 2);
+
+
+    /// DERNIERS ARGUMENTS TESTES A LA COMPILATION !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+  ///  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  ////////////
+
+
     // ft_sortb(&stack_a, &stack_b, b_size, chunksize);
 
     /* print_stack(stack_a);

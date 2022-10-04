@@ -5,398 +5,209 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 10:42:07 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/30 21:56:20 by oboutarf         ###   ########.fr       */
+/*   Created: 2022/10/03 14:38:32 by oboutarf          #+#    #+#             */
+/*   Updated: 2022/10/04 03:27:26 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
-// $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //
-// $ // ----------------------------------------------------------------- // # //
 
-int find_zemidl(stack **sta)
+void		give_rra_rrb(stack **sta, stack **stb)
 {
-    stack   *start;
-    int     zemidl;
-    
-    zemidl = 0;
-    start = (*sta);
-    zemidl = get_stacklen(sta) / 2;
-    while ((*sta)->next != NULL)
-    {
-        if ((*sta)->target_pos == zemidl)
-        {
-            zemidl = (*sta)->value;
-            *sta = start;
-            return (zemidl);
-        }
-        (*sta) = (*sta)->next;
-    }
-    (*sta) = start;
-    return (zemidl);
+	stack	*sta_save;
+	stack	*stb_save;
+	int		mid_a = get_stacklen(sta) / 2 + 1;
+	int		mid_b = get_stacklen(stb) / 2 + 1;
+	int		mid_atmp = mid_a;
+	int		mid_btmp = mid_b;
+
+	sta_save = (*sta);
+	stb_save = (*stb);
+	while (mid_atmp > 0)
+	{
+		(*sta) = (*sta)->next;
+		mid_atmp--;	
+	}
+	mid_atmp = mid_a - 1;
+	while ((*sta) != NULL)
+	{
+		(*sta)->rra = mid_atmp;
+		// printf("(*sta)->value is: %d\n", (*sta)->value);
+		// printf("(*sta)->rra is: %d\n", (*sta)->rra);
+		(*sta) = (*sta)->next;
+		mid_atmp--;
+	}
+	printf("\n\n\n");
+	(*sta) = sta_save;
+	while (mid_btmp > 0)
+	{
+		(*stb) = (*stb)->next;
+		mid_btmp--;	
+	}
+	mid_btmp = mid_b - 1;
+	while ((*stb) != NULL)
+	{
+		(*stb)->rrb = mid_btmp;
+		// printf("(*stb)->value is: %d\n", (*stb)->value);
+		// printf("(*stb)->rrb is: %d\n", (*stb)->rrb);
+		(*stb) = (*stb)->next;
+		mid_btmp--;
+	}
+	printf("\n\n\n");
+	(*stb) = stb_save;
 }
 
-// $ // ----------------------------------------------------------------- // # //
-
-int     count_number(stack **sta, int n_len)
+void		give_ra_rb(stack **sta, stack **stb)
 {
-    stack   *start;
-    int     count;
-    
-    count = 0;
-    start = (*sta);
-    while (*sta)
-    {
-        if (ft_numlen((*sta)->value) == n_len)
-            count++;
-        (*sta) = (*sta)->next;
-    }
-    (*sta) = start;
-    return (count);
+	int		mid_a = get_stacklen(sta) / 2;
+	int		mid_b = get_stacklen(stb) / 2;
+	int		orig_a = 1;
+	int		orig_b = 1;
+
+	while (mid_a > 0)
+	{
+		(*sta)->ra = orig_a;
+		// printf("(*sta)->value is: %d\n", (*sta)->value);
+		// printf("(*sta)->ra is: %d\n", (*sta)->ra);
+		(*sta) = (*sta)->next;
+		orig_a++;
+		mid_a--;
+	}
+	printf("\n\n\n");
+	while (mid_b > 0)
+	{
+		(*stb)->rb = orig_b;
+		// printf("(*stb)->value is: %d\n", (*stb)->value);
+		// printf("(*stb)->rb is: %d\n", (*stb)->rb);
+		(*stb) = (*stb)->next;
+		orig_b++;
+		mid_b--;
+	}
+	printf("\n\n\n");
 }
 
-// $ // ----------------------------------------------------------------- // # //
-
-// $ // 110010110000111001011000011100101100001110010110000111001011000011 // # //
-// $ // -----------------------  o b__ radix  --------------------------- // # //
-// $ // 1001011000011100101100001110010110000111001011000011100101100001 // # //
-
-/* void    check_rra(stack **sta)
+void	fnlcosts_mid_up(stack **sta, stack **stb, int mid)
 {
-    stack   **sta_save;
-    stack   *save_bottom;
-    stack   *tmp;
-
-    if (!(*sta))
-        return ;
-    sta_save = sta;
-    tmp = (*sta);
-    while ((*sta_save)->next->next != NULL)
-        (*sta_save) = (*sta_save)->next;
-    save_bottom = (*sta_save)->next;
-    (*sta_save)->next = (NULL);
-    (*sta) = save_bottom;
-    (*sta)->next = tmp;
-} */
-/* int     count_rra(stack **sta, int orig, int size, int stacksize)
-{
-    int     count_prev = 0;
-    stack   *save;
-    stack   **tmp1;
-
-    tmp1 = sta;
-    save = (*tmp1);
-    while (!((*tmp1)->target_pos >= (orig + 1) && (*tmp1)->target_pos <= stacksize))
-    {
-        if (count_prev == size / 2)
-            return (-1);
-        check_rra(sta);
-        count_prev++;
-    }
-    (*tmp1) = save;
-    return (count_prev);
-} */
-/*
-void    ob_radix(stack **sta, stack **stb, int size)
-{
-    int     ra_visu = 0;
-    int     rra_visu = 0;
-    int     tmpstacksize;
-    int     stacksize;
-    int     orig = 0;
-    int     count_elem = 0;
-
-    stacksize = size / 3;
-    tmpstacksize = stacksize;
-    while (size > 0)
-    {
-        count_elem = 0;
-        while ((*sta)->next != NULL && count_elem != stacksize)
-        {
-            rra_visu = count_rra(sta, orig, size, stacksize);
-            ra_visu = count_ra(sta, orig, size, stacksize);
-            if (!(count_ra(sta, orig, size, stacksize) == -1))
-            {
-                while (ra_visu > 0)
-                {
-                    ft_ra(sta);
-                    ra_visu--;   
-                }
-                ft_pb(sta, stb);
-                count_elem++;
-                size--;
-            }
-            if (!(count_rra(sta, orig, size, stacksize) == -1))
-            {
-                while (rra_visu > 0)
-                {
-                    ft_rra(sta);
-                    rra_visu--;
-                }
-                ft_pb(sta, stb);
-                count_elem++;
-                size--;
-            }
-            rra_visu = 0;
-            ra_visu = 0;
-        }
-        orig += stacksize;
-        tmpstacksize += stacksize;
-    }
-}
-*/
-
-
-int     count_ra(stack **sta, int orig, int size, int stacksize)
-{
-    int     count_next = 0;
-    stack   *tmp1;
-    
-    tmp1 = (*sta);
-    while (!(tmp1->target_pos >= orig + 1 && tmp1->target_pos <= stacksize))
-    {
-        if (count_next == size / 2)
-            return (0);
-        tmp1 = tmp1->next;
-        count_next++;
-    }
-    return (count_next);
-}
-
-
-void    ob_radix(stack **sta, stack **stb, int size)
-{
-    int     ra_visu = 0;
-    int     tmpstacksize;
-    int     stacksize;
-    int     orig = 0;
-    int     count_elem = 0;
-
-    stacksize = size / 10;
-    tmpstacksize = stacksize;
-    while (size > 0)
-    {
-        count_elem = 0;
-        while ((*sta)->next != NULL && count_elem != stacksize)
-        {
-            ra_visu = count_ra(sta, orig, size, stacksize);
-            if (ra_visu > 0)
-            {
-                while (ra_visu > 0)
-                {
-                    ft_ra(sta);
-                    ra_visu--;
-                }
-                ft_pb(sta, stb);
-                count_elem++;
-                size--;
-            }
-            else
-            {
-                while ((*sta)->target_pos > tmpstacksize)
-                    ft_rra(sta);
-                ft_pb(sta, stb);
-                count_elem++;
-                size--;
-            }
-            ra_visu = 0;
-        }
-        orig += stacksize;
-        tmpstacksize += stacksize;
-    }
-}
-
-/* void    ob_radix(stack **sta, stack **stb, int size)
-{
-    int     tmpstacksize;
-    int     stacksize;
-    int     orig = 0;
-    int     count_elem = 0;
-
-    stacksize = size / 11;
-    tmpstacksize = stacksize;
-    while (size > 0)
-    {
-        count_elem = 0;
-        while ((*sta)->next != NULL && count_elem != stacksize)
-        {
-            if ((*sta)->target_pos >= (orig + 1) && (*sta)->target_pos <= tmpstacksize)
-            {
-                ft_pb(sta, stb);
-                count_elem++;
-                size--;
-            }
-            else
-                ft_ra(sta);
-        }
-        orig += stacksize;
-        tmpstacksize += stacksize;
-    }
-} */
-                // write(1, "", 5);
-                // tmpstacksize--;
-
-
-// $ // 110010110000111001011000011100101100001110010110000111001011000011 // # //
-// $ // -----------------------  s o r t b  ----------------------------- // # //
-// $ // 1001011000011100101100001110010110000111001011000011100101100001 // # //
-
-
-boolean    rotate_b(stack **stb, int size, int len_chunk)
-{
-	int		tmplen_chunk;
-    stack   **tmp2;
-    
-    tmp2 = stb;
-    tmplen_chunk = len_chunk;
-    while (tmplen_chunk > 0)
-    {
-        if ((*tmp2)->target_pos == size)
-            return (true);
-        ft_rb(stb);
-        tmplen_chunk--;
-    }
-    if (len_chunk > 0)
-        return (false);
-    return (false);
-}
-
-boolean    revrotate_b(stack **stb, int size)
-{
-    stack   **tmp2;
-
-    tmp2 = stb;
-    while (ft_numlen((*tmp2)->value) != 1)
-    {
-        if ((*tmp2)->target_pos == size)
-            return (true);
-        ft_rrb(stb);
-    }
-    return (false);
-}
-
-void    ft_sortb(stack **sta, stack **stb, int size, int len_chunk)
-{
-    int     tmpsize = size;
+	stack	*save_sta = (*sta);
+	stack	*save_stb = (*stb);
+	int		final_cost = 0;
+	int		tmp_mid1 = mid;
+	int		tmp_mid2 = mid;
 	
+	give_ra_rb(sta, stb);
+	give_rra_rrb(sta, stb);
+	while ((*stb)->next != NULL && tmp_mid1 > 0)
+	{
+		tmp_mid2 = mid;
+		while ((*sta)->next != NULL && tmp_mid2 > 0)
+		{
+			final_cost = 0;
+			if ((*stb)->value < (*sta)->value)
+			{
+				final_cost = (*sta)->ra + (*stb)->rb;
+				(*stb)->final_cost1 = final_cost;
+				printf("(*sta)->value: %d\n", (*sta)->value);
+				printf("(*sta)->ra: %d\n", (*sta)->ra);
+				printf("(*sta)->rra: %d\n\n", (*sta)->rra);
+				printf("(*stb)->value: %d\n", (*stb)->value);
+				printf("(*stb)->rb: %d\n", (*stb)->rb);
+				printf("(*stb)->rrb: %d\n", (*sta)->rrb);
+				printf("(*stb)->final_cost1: %d\n\n\n\n", (*stb)->final_cost1);
+			}
+			printf("--------------------------------\n\n");
+			(*sta) = (*sta)->next;
+			tmp_mid2--;
+		}
+		(*sta) = save_sta;
+		(*stb) = (*stb)->next;
+		tmp_mid1--;
+	}
+	(*sta) = save_sta;
+	(*stb) = save_stb;
+}
 
-    while (tmpsize > 0)
-    {
-		if (rotate_b(stb, tmpsize, len_chunk) || revrotate_b(stb, tmpsize))
+/* void	fnlcosts_mid_down(stack **sta, stack **stb)
+{
+	
+} */
+
+void	give_order_sta(stack **sta)
+{
+	if ((*sta)->value > (*sta)->next->value)
+		ft_sa(sta);
+}
+ 
+void	start_max(stack **sta, stack **stb, int tmp_size)
+{
+	// int		eight = tmp_size / 300;
+	int		size = tmp_size;
+	// int		tmp1_size = tmp_size;
+	int		mid = tmp_size / 2;
+	int		quad = mid / 2;
+	int		quadquad = quad / 2;
+	int		quadquadquad = quadquad / 2;
+	int		quadx4 = quadquadquad / 2;
+	int		cmpr = mid + quad + quadquad + quadquadquad + quadx4;
+	int		last_idx = tmp_size;
+	
+	size *= 2;
+	while (size > 0)
+	{
+		if ((*stb)->target_pos >= cmpr && (*stb)->target_pos <= last_idx)
 		{
 			ft_pa(sta, stb);
-			tmpsize--;
-        }
-    }
-}
-    // ft_sortb2(sta, stb , max_index);
-
-
-/* boolean    rotate_b(stack **stb, int size, int len_chunk)
-{
-    int     tmpsize = size;
-    int     tmplen_chunk;
-    
-    tmplen_chunk = len_chunk;
-    while ()    
-    {
-        if ((*sta)->target_pos == max_index)
-            return (true)
-        ft_rb()
-        chunk++;
-        return (false)
-    }
-}
-*/
-
-
-
-// $ // 110010110000111001011000011100101100001110010110000111001011000011 // # //
-// $ // -----------------------  +++++++++  ----------------------------- // # //
-// $ // 1001011000011100101100001110010110000111001011000011100101100001 // # //
-
-
-// $ // ----------------------------------------------------------------- // # //
-
-
-
-// $ // ----------------------------------------------------------------- // # //
-
-
-// $ // ----------------------------------------------------------------- // # //
-
-
-// $ // ----------------------------------------------------------------- // # //
-
-
-// $ // ----------------------------------------------------------------- // # //
-
-
-// $ // ----------------------------------------------------------------- // # //
-
-
-
-/* // $ // ----------------------------------------------------------------- // # //
-
-void    ob_radix1(stack **sta, stack **stb)
-{
-    int     stacksize = 0;
-
-    stacksize = count_number(sta, 1);
-    while ((*sta)->next != NULL && stacksize != 0)
-    {
-        if (!(ft_numlen((*sta)->value) == 1))
-            ft_ra(sta);
-        else
-        {
-            ft_pb(sta, stb);
-            stacksize--;
-        }
-    }
+			give_order_sta(sta);
+			last_idx -= quadx4;
+			cmpr -= quadx4;
+		}
+		else
+			ft_rb(stb);
+		size -= 1;
+	}
+	give_ra_rb(sta, stb);
 }
 
-// $ // ----------------------------------------------------------------- // # //
-
-
-void    ob_radix2(stack **sta, stack **stb)
+void	maxmin(stack **sta, stack **stb, int tmp_size)
 {
-    int     stacksize = 0;
-
-    stacksize = count_number(sta, 2);
-    while ((*sta)->next != NULL && stacksize != 0)
-    {
-        if (!(ft_numlen((*sta)->value) == 2))
-            ft_ra(sta);
-        else
-        {
-            ft_pb(sta, stb);
-            stacksize--;
-        }
-    }
+	int		count = 2;
+	
+	while (count > 0)
+	{
+		while ((*stb)->target_pos != 0 && (*stb)->target_pos != tmp_size)
+			ft_rb(stb);
+		ft_pa(sta, stb);
+		count--;
+	}
+	start_max(sta, stb, tmp_size);
 }
 
-// $ // ----------------------------------------------------------------- // # //
-
-
-void    ob_radix3(stack **sta, stack **stb, int max_index)
+void 	ft_div2(stack **sta, stack **stb, int mid, int tmp_size)
 {
-    int     orig_elem3 = 0;
-    int     stacksize = 0;
+	while (mid > 0)
+	{
+		if ((*sta)->target_pos >= 0 || (*sta)->target_pos < mid / 2)
+		{
+			ft_pb(sta, stb);
+			mid--;
+		}
+		else
+			ft_ra(sta);
+	}
+	maxmin(sta, stb, tmp_size);
+}
 
-    stacksize = count_my_num(stb, min, max)
-    while ((*sta) && stacksize != 0)
-    {
-        if (!())
-            ft_ra(sta);
-        else
-        {
-            ft_pb(sta, stb);
-            stacksize--;
-            orig_elem3++;
-        }
-    }
-} */
+void	ft_div(stack **sta, stack **stb, int size)
+{
+	int		tmp_size = size - 2;
+	int		mid = size / 2;
 
-// $ // ----------------------------------------------------------------- // # //
-// $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //
+ 	while (size >= mid)
+	{
+		while ((*sta)->target_pos < mid)
+			ft_ra(sta);
+		ft_pb(sta, stb);
+		size--;
+	}
+	ft_div2(sta, stb, mid, tmp_size);
+}

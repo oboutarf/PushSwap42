@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/04 03:24:07 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/05 00:01:36 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,27 @@ int     main(int ac, char **av)
 
     give_target(stack_a);
     ft_div(&stack_a, &stack_b, size);
-    fnlcosts_mid_up(&stack_a, &stack_b, size / 2);
+    give_ra_rra(&stack_a);
+    give_rb_rrb(&stack_b);
+    what_move(&stack_a, &stack_b);    
+    // give_ra_rra(&stack_a);
+    // give_rb_rrb(&stack_b);
+/*     print_stack(stack_a);
+    printf("\n# ^ ------------------------------  1A #\n");
+    printf("# | S T A C K  A  -------------------- #\n");
+	printf("# | ---------------------------------- #\n\n\n\n\n");
+    // fnlcosts_mid_up(&stack_a, &stack_b, size / 2);
+    printf("\n\n0000000000000000000000000000000000000000\n\n"); 
+    printf("\n\n0000000000000000000000000000000000000000\n\n"); 
+    printf("\n\n0000000000000000000000000000000000000000\n\n"); 
+    printf("\n\n0000000000000000000000000000000000000000\n\n"); 
 
-
+    print_stack(stack_b);
+    print_stack(stack_b);
+    printf("\n# ^ ------------------------------  1B #\n");
+	printf("# |  S T A C K  B  ------------------- #\n");	
+	printf("# | ---------------------------------- #\n\n");
+ */
     /// DERNIERS ARGUMENTS TESTES A LA COMPILATION !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
@@ -113,10 +131,7 @@ int     main(int ac, char **av)
     printf("\n# ^ ------------------------------  3B #\n");
 	printf("# |  S T A C K  B  ------------------- #\n");
 
-    printf("\n\n0000000000000000000000000000000000000000\n\n"); */
-
-    ft_index(&stack_a);											
-    ft_index(&stack_b);											
+    printf("\n\n0000000000000000000000000000000000000000\n\n"); */								
 
 	/* print_stack(stack_a);
     printf("\n# ^ ------------------------------  4A #\n");
@@ -130,8 +145,8 @@ int     main(int ac, char **av)
 
     printf("\n0000000000000000000000000000000000000000\n\n"); */
 
-    ft_index(&stack_b);			//      rajouter en paramètres
-    ft_index(&stack_a);		    //        les stacks A & B    
+    //      rajouter en paramètres
+    //        les stacks A & B    
                                  //         à 'ft_index'
     /* print_stack(stack_a);							
 	printf("\n# ^ ------------------------------  5A #\n");

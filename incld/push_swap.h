@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/05 00:22:55 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:30:12 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef enum boolean
 
 typedef struct stack
 {
-    int             final_cost_rrb;
-    int             final_cost_rb;
+    // int             final_cost_rra;
+    // int             final_cost_ra;
     int             target_pos;
     int             value;
     int             index;
@@ -66,15 +66,17 @@ typedef struct stack
 
 
 int     count_number(stack **sta, int n_len);
-int     get_stacklen(stack **sta);
+int     get_stacklen(stack *sta);
 int     min_elem(stack **sta);
 int     max_elem(stack **sta);
 int		ft_strlen(char *str);
 int     ft_atoi(char *nptr);
 int     ft_numlen(int n);
 
+stack	*give_ra_rra(stack *sta);
+stack	*give_rb_rrb(stack *stb);
 void	move_now(stack **sta, stack **stb, int tmp_ra_cheap, int tmp_rb_cheap);
-void	what_move(stack **sta, stack **stb);
+void	what_move(stack *sta, stack *stb);
 void    ft_div(stack **sta, stack **stb, int size);
 void	instructs_achiev(stack **sta, stack **stb);
 void	give_ra_rb(stack **sta, stack **stb);
@@ -83,8 +85,6 @@ void    ft_pa(stack **sta, stack **stb);
 void    ft_pb(stack **sta, stack **stb);
 void    ft_rr(stack **sta, stack **stb);
 void	ft_ss(stack **sta, stack **stb);
-void	give_ra_rra(stack **sta);
-void	give_rb_rrb(stack **stb);
 void    give_target(stack *sta);
 void    print_stack(stack *st);
 void    ft_index(stack **st);   // bug d'index!!! A corriger.

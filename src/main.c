@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/05 00:01:36 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:02:34 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 int     main(int ac, char **av)
 {
 	/* printf("\n\n:Project: push_swap\n\n"); */
-	stack	*stack_a;											
-    stack   *stack_b;											
+	stack	*stack_a;				
+    stack   *stack_b;				
     int     size = 0;
 	// int     b_size = 0;
     // int     chunksize = 0;
@@ -39,7 +39,7 @@ int     main(int ac, char **av)
     if (!(fill_stack(&stack_a, ac - 1, av)))
         return (write(2, "error\n", 6), 0);
     give_target(stack_a);
-    size = get_stacklen(&stack_a);
+    size = get_stacklen(stack_a);
     // b_size = get_stacklen(&stack_a);
     // chunksize = b_size / 6;
     // printf("%d",get_stacklen(&stack_a));
@@ -66,9 +66,9 @@ int     main(int ac, char **av)
 
     give_target(stack_a);
     ft_div(&stack_a, &stack_b, size);
-    give_ra_rra(&stack_a);
-    give_rb_rrb(&stack_b);
-    what_move(&stack_a, &stack_b);    
+    give_ra_rra(stack_a);
+    give_rb_rrb(stack_b);
+    // what_move(stack_a, stack_b);
     // give_ra_rra(&stack_a);
     // give_rb_rrb(&stack_b);
 /*     print_stack(stack_a);

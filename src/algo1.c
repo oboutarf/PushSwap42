@@ -6,124 +6,100 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:38:32 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/05 00:59:06 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:19:23 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
 
-void	give_ra_rra(stack **sta)
+stack	*give_ra_rra(stack *sta)
 {	
 	int		size = get_stacklen(sta);
-	stack	**sta_save = sta;
-	stack	*start = (*sta);
 	int		orig_elem = 0;
 
-	while ((*sta_save)->next != NULL)
+	while (size > 0)
 	{
-		(*sta_save)->ra = orig_elem;
-		(*sta_save)->rra = size;
+		sta->ra = orig_elem;
+		sta->rra = size;
 		if (orig_elem == 0)
-			(*sta_save)->rra = orig_elem;
-		// printf("(*sta)->value: %d\n", (*sta)->value);
-		// printf("(*sta)->ra: %d\n", (*sta)->ra);
-		// printf("(*sta)->rra: %d\n\n\n\n", (*sta)->rra);
-		(*sta_save) = (*sta_save)->next;
+			sta->rra = orig_elem;
+		sta = sta->next;
 		orig_elem++;
 		size--;
 	}
-	(*sta) = start;
+	return (sta);
 }
 
-void	give_rb_rrb(stack **stb)
-{
+stack	*give_rb_rrb(stack *stb)
+{	
 	int		size = get_stacklen(stb);
-	stack	**stb_save = stb;
-	stack	*start = (*stb);
 	int		orig_elem = 0;
 
-	while ((*stb_save)->next != NULL)
+	while (size > 0)
 	{
-		(*stb_save)->rb = orig_elem;
-		(*stb_save)->rrb = size;
+		stb->ra = orig_elem;
+		stb->rra = size;
 		if (orig_elem == 0)
-			(*stb_save)->rrb = orig_elem;
-		// printf("(*stb)->value: %d\n", (*stb)->value);
-		// printf("(*stb)->rb: %d\n", (*stb)->rb);
-		// printf("(*stb)->rrb: %d\n\n", (*stb)->rrb);
-		(*stb_save) = (*stb_save)->next;
+			stb->rra = orig_elem;
+		stb = stb->next;
 		orig_elem++;
 		size--;
 	}
-	(*stb) = start;
+	return (stb);
 }
 
-void	move_now(stack **sta, stack **stb, int tmp_ra_cheap, int tmp_rb_cheap)
+void	search_elem_back(stack **sta, stack stb)
 {
-	if (tmp_ra_cheap == 0 && tmp_rb_cheap == 0)
-		ft_pa(sta, stb);
-	if (tmp_ra_cheap > 0)
-	{
-		while (tmp_ra_cheap > 0)
-		{
-			tmp_ra_cheap--;
-			ft_ra(sta);
-		}
-		if (tmp_rb_cheap > 0)
-		{	
-			while (tmp_rb_cheap > 0)
-			{
-				tmp_ra_cheap--;
-				ft_rb(stb);
-			}
-		}
-		ft_pa(sta, stb);
+	stack	*last_a;
+
+	while (1)
+	{	
+		last_a = *sta;
+		while (last_a->next)
+			last_a = last_a->next;
+		if ((*sta)->value >= stb.value && last_a->value <= stb.value)
+			break ;
+		ft_rra(sta);
 	}
 }
 
-void	what_move(stack **sta, stack **stb)
+void	search_elem(stack **sta, stack stb)
 {
-	stack	**sta_save = sta;
-	stack	**stb_save = stb;
-	// stack	*start_a = (*sta);
-	// stack	*start_b = (*stb);
-	// int		rest_b = get_stacklen(stb);
-	int		rest_a = 0;
-	int		i = 0;
-	// int		j = 0;
+	stack	*last_a;
 
-	while ((*sta)->next != NULL)
-	{
-		rest_a = get_stacklen(sta);
-		while (rest_a)
-		{
-			if ((*stb_save)->value < (*sta_save)->value)
-			{
-				give_ra_rra(sta);
-				give_rb_rrb(stb);
-				move_now(sta_save, stb_save, i, (*stb_save)->rb);
-				rest_a--;
-			}
-			else 
-			{
-				(*sta_save) = (*sta_save)->next;
-				// (*stb_save) = (*stb_save)->next;
-				i++;
-				// j++;
-				rest_a--;
-			}
-		}
-		i = 0;
-		(*sta_save) = (*sta);
-		(*stb_save) = (*stb);
+	while (1)
+	{	
+		last_a = *sta;
+		while (last_a->next)
+			last_a = last_a->next;
+		if ((*sta)->value >= stb.value && last_a->value <= stb.value)
+			break ;
+		ft_ra(sta);
 	}
 }
 
-/* void	scanf_rrb(stack **sta, stack **stb, int size)
+void	choose_which_way(stack **sta, stack stb)
 {
+	stack *last_a;
+	
+	last_a = *sta;
+	while (last_a->next)
+		last_a = last_a->next;
+	if (stb.value < last_a->value)
+		search_elem_back(sta, stb);
+	else
+		search_elem(sta, stb);
+}
 
-} */
+void	what_move(stack *sta, stack *stb)
+{
+	while (stb->next != NULL)
+	{
+		choose_which_way(&sta, *stb);
+		ft_pa(&sta, &stb);
+	}
+}
 
 // faire une fonction qui calule pour chaque maillon de la pile B l'endroit ou c'est le plus 'cheap'
 // de le placer. Un premier scan (qui attribuera une valeur au 'finalcost1') devra avoir lieu pour les 'ra':
@@ -169,6 +145,8 @@ void	start_max(stack **sta, stack **stb, int tmp_size)
 		if ((*stb)->target_pos >= cmpr && (*stb)->target_pos <= last_idx)
 		{
 			ft_pa(sta, stb);
+			if ((*sta)->value > (*sta)->next->value)
+				ft_sa(sta);
 			last_idx -= quadx4;
 			cmpr -= quadx4;
 		}
@@ -176,10 +154,7 @@ void	start_max(stack **sta, stack **stb, int tmp_size)
 			ft_rb(stb);
 		size -= 1;
 	}
-	// give_ra_rra(sta);
-	// give_rb_rrb(stb);
-	// ft_rra(sta);
-	// scanf_rb(sta, stb, save_size);
+	// what_move((*sta), (*stb));
 }
 
 void	maxmin(stack **sta, stack **stb, int tmp_size)
@@ -193,7 +168,9 @@ void	maxmin(stack **sta, stack **stb, int tmp_size)
 		ft_pa(sta, stb);
 		count--;
 	}
-	start_max(sta, stb, tmp_size);
+	ft_rra(sta);
+	what_move(*sta, *stb);
+	// start_max(*sta, stb, tmp_size);//
 }
 
 void 	ft_div2(stack **sta, stack **stb, int mid, int tmp_size)
@@ -235,6 +212,61 @@ void	ft_div(stack **sta, stack **stb, int size)
 				// printf("(*stb)->final_cost: %d\n\n\n\n", (*stb)->final_cost);
 
 /*
+
+void	move_now(stack **sta, stack **stb, int tmp_ra_cheap, int tmp_rb_cheap)
+{
+	if (tmp_ra_cheap == 0 && tmp_rb_cheap == 0)
+		ft_pa(sta, stb);
+	if (tmp_ra_cheap > 0)
+	{
+		printf("YO");
+		while (tmp_ra_cheap > 0)
+		{
+			tmp_ra_cheap--;
+			ft_ra(sta);
+		}
+		ft_pa(sta, stb);
+	}
+}
+
+void	what_move(stack *sta, stack *stb)
+{
+	int		rest_b = 0;
+	stack	*last_a;
+	// stack	*tmp_a;
+	// int		i = 0;
+
+	while (stb->next != NULL)
+	{
+		rest_b = get_stacklen(stb);
+		while (rest_b + 1 > 0)
+		{
+			last_a = sta;
+			while (last_a->next)
+				last_a = last_a->next;
+			give_ra_rra(sta);
+			give_rb_rrb(stb);
+			if (stb->value <= sta->value && stb->value >= last_a->value)
+			{
+				move_now(&sta, &stb, sta->ra, 0);
+				rest_b--;
+			}
+			else
+				ft_ra(&sta);
+		}
+		// i = 0;
+	}
+}
+
+
+
+
+
+
+
+
+
+
 void	move_it(stack **sta, stack **stb, int tmp_ra_cheap, int tmp_rb_cheap)
 {
 	int		all_actions = tmp_ra_cheap + tmp_rb_cheap;

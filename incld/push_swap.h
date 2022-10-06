@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/05 16:30:12 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/06 22:28:04 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ typedef struct stack
     int             rrb;
     int             ra;
     int             rb;
-    int             rr;
-    int             rrr;
     struct  stack   *next;
 }stack;
 
@@ -73,10 +71,12 @@ int		ft_strlen(char *str);
 int     ft_atoi(char *nptr);
 int     ft_numlen(int n);
 
+void    do_chunks(stack *sta, stack *stb);
+
 stack	*give_ra_rra(stack *sta);
 stack	*give_rb_rrb(stack *stb);
 void	move_now(stack **sta, stack **stb, int tmp_ra_cheap, int tmp_rb_cheap);
-void	what_move(stack *sta, stack *stb);
+void	what_move(stack *sta, stack *stb, int save_last_val);
 void    ft_div(stack **sta, stack **stb, int size);
 void	instructs_achiev(stack **sta, stack **stb);
 void	give_ra_rb(stack **sta, stack **stb);

@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/05 14:02:34 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/06 22:25:29 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,13 @@ int     main(int ac, char **av)
 
 
     give_target(stack_a);
-    ft_div(&stack_a, &stack_b, size);
-    give_ra_rra(stack_a);
-    give_rb_rrb(stack_b);
+    // give_ra_rra(stack_a);
+    // give_rb_rrb(stack_b);
+    if (get_stacklen(stack_a) > 50)
+        // ob_radix(&stack_a, &stack_b, size);
+        do_chunks(stack_a, stack_b);
+    else    
+        ft_div(&stack_a, &stack_b, size);
     // what_move(stack_a, stack_b);
     // give_ra_rra(&stack_a);
     // give_rb_rrb(&stack_b);

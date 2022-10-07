@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:42:07 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/07 10:49:21 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:47:42 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -605,3 +605,49 @@ void    ft_sortb(stack **sta, stack **stb, int size, int len_chunk)
         printf("->       stack unclear !\n");
     print_stack(stack); */
  
+/* 
+ void    ob_radix(stack **sta, stack **stb, int size)
+{
+    int     ra_visu = 0;
+	int		tmpsize = size;
+    int     tmpstacksize;
+    int     stacksize;
+    int     orig = 0;
+    int     count_elem = 0;
+
+    stacksize = size / 12;
+    tmpstacksize = stacksize;
+    while (size > 0)
+    {
+        count_elem = 0;
+        while ((*sta)->next != NULL && count_elem != stacksize - 1)
+        {
+            ra_visu = count_ra(sta, orig, size, stacksize);
+            if (ra_visu > 0)
+            {
+                while (!(ra_visu == 0))
+                {
+                    ft_ra(sta);
+                    ra_visu--;
+                }
+                ft_pb(sta, stb);
+                count_elem++;
+                size--;
+            }
+            else
+            {
+                while ((*sta)->target_pos > tmpstacksize)
+                    ft_rra(sta);
+                ft_pb(sta, stb);
+                count_elem++;
+                size--;
+            }
+            ra_visu = 0;
+        }
+        orig += stacksize;
+        tmpstacksize += stacksize;
+    }
+	if (get_stacklen(*sta) == 0)
+		ft_pb(sta, stb);
+	maxmin(sta, stb, tmpsize);
+} */

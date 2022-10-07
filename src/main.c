@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/07 11:55:41 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/07 18:06:46 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int     main(int ac, char **av)
 {
 	stack	*stack_a;				
     stack   *stack_b;
-    int size = 0;
+    int     *size = malloc(sizeof(int)*10);
     
     stack_a = NULL;												
     stack_b = NULL;												
@@ -27,14 +27,15 @@ int     main(int ac, char **av)
         return (write(2, "error\n", 6), 0);
 
     give_target(stack_a);
-    size = get_stacklen(stack_a);
-    chunk_it(stack_a, stack_b, size);
-    give_target(stack_a);
-    // ob_radix(&stack_a, &stack_b, size);
+    size[0] = get_stacklen(stack_a);
+    size[1] = size[0];
+    chunk_it(stack_a, stack_b, size[0]);
+
+    // maxmin(&stack_a, &stack_b, size[1]);
+    // maxmin(&stack_a, &stack_b, size);
+    // give_target(stack_a);
+    // ob_radix(&stack_a, &stack_b, size[0]);
     // ft_div(&stack_a, &stack_b, size);
-    
-   /*printf(" 0000000000000000000000000000000000000000\n\n");
-    printf("000000000000000   E N D   0000000000000000\n\n");
-    printf(" 0000000000000000000000000000000000000000\n\n");*/
+
     return (1);
 }

@@ -1,17 +1,92 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo2.c                                            :+:      :+:    :+:   */
+/*   algo_draft2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:59:44 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/30 13:06:55 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/07 18:09:55 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
+/* 
+
+ void    ob_radix(stack **sta, stack **stb, int size)
+{
+    int     ra_visu = 0;
+	int		tmpsize = size;
+    int     tmpstacksize;
+    int     stacksize;
+    int     orig = 0;
+    int     count_elem = 0;
+
+    stacksize = size / 12;
+    tmpstacksize = stacksize;
+    while (size > 0)
+    {
+        count_elem = 0;
+        while ((*sta)->next != NULL && count_elem != stacksize - 1)
+        {
+            ra_visu = count_ra(sta, orig, size, stacksize);
+            if (ra_visu > 0)
+            {
+                while (!(ra_visu == 0))
+                {
+                    ft_ra(sta);
+                    ra_visu--;
+                }
+                ft_pb(sta, stb);
+                count_elem++;
+                size--;
+            }
+            else
+            {
+                while ((*sta)->target_pos > tmpstacksize)
+                    ft_rra(sta);
+                ft_pb(sta, stb);
+                count_elem++;
+                size--;
+            }
+            ra_visu = 0;
+        }
+        orig += stacksize;
+        tmpstacksize += stacksize;
+    }
+	// if (get_stacklen(*sta) == 0)
+	// 	ft_pb(sta, stb);
+	maxmin(sta, stb, tmpsize);
+}
+void	ft_div(stack **sta, stack **stb, int size)
+{
+	int		tmp_size = size;
+	int		mid = size / 2;
+
+ 	while (size >= mid)
+	{
+		while ((*sta)->target_pos < mid)
+			ft_ra(sta);
+		ft_pb(sta, stb);
+		size--;
+	}
+	ft_div2(sta, stb, mid, tmp_size);
+}
+void 	ft_div2(stack **sta, stack **stb, int mid, int tmp_size)
+{
+	while (mid > 0)
+	{
+		if ((*sta)->target_pos >= 0 || (*sta)->target_pos < mid / 2)
+		{
+			ft_pb(sta, stb);
+			mid--;
+		}
+		else
+			ft_ra(sta);
+	}
+	maxmin(sta, stb, tmp_size);
+}
 
 
 
@@ -20,8 +95,7 @@
 
 
 
-
-
+ */
 
 
 

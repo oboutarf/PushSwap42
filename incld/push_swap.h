@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/06 22:28:04 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:51:22 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,11 @@ int		ft_strlen(char *str);
 int     ft_atoi(char *nptr);
 int     ft_numlen(int n);
 
-void    do_chunks(stack *sta, stack *stb);
 
-stack	*give_ra_rra(stack *sta);
+void	what_move_a(stack *sta, stack *stb);
+void	chunk_it(stack *sta, stack *stb, int size);
+
+
 stack	*give_rb_rrb(stack *stb);
 void	move_now(stack **sta, stack **stb, int tmp_ra_cheap, int tmp_rb_cheap);
 void	what_move(stack *sta, stack *stb, int save_last_val);

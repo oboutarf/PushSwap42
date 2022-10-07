@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:42:07 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/04 01:49:23 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/07 10:49:21 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -408,6 +408,38 @@ void    ft_sortb(stack **sta, stack **stb, int size, int len_chunk)
 */
 
 
+/* void	start_max(stack **sta, stack **stb, int tmp_size)
+{	
+	// int		save_size = tmp_size;	
+	// int		eight = tmp_size / 300;
+	int		size = tmp_size;
+	// int		tmp1_size = tmp_size;
+	int		mid = tmp_size / 2;
+	int		quad = mid / 2;
+	int		quadquad = quad / 2;
+	int		quadquadquad = quadquad / 2;
+	int		quadx4 = quadquadquad / 2;
+	int		cmpr = mid + quad + quadquad + quadquadquad + quadx4;
+	int		last_idx = tmp_size;
+	
+	size *= 2;
+	while (size > 0)
+	{
+		if ((*stb)->target_pos >= cmpr && (*stb)->target_pos <= last_idx)
+		{
+			ft_pa(sta, stb);
+			if ((*sta)->value > (*sta)->next->value)
+				ft_sa(sta);
+			last_idx -= quadx4;
+			cmpr -= quadx4;
+		}
+		else
+			ft_rb(stb);
+		size -= 1;
+	}
+	// what_move((*sta), (*stb));
+} */
+
 
 // $ // 110010110000111001011000011100101100001110010110000111001011000011 // # //
 // $ // -----------------------  +++++++++  ----------------------------- // # //
@@ -435,3 +467,141 @@ void    ft_sortb(stack **sta, stack **stb, int size, int len_chunk)
 
 
 // $ // ----------------------------------------------------------------- // # //
+
+/*     print_stack(stack_a);
+    printf("\n# ^ ------------------------------  1A #\n");
+    printf("# | S T A C K  A  -------------------- #\n");
+	printf("# | ---------------------------------- #\n\n\n\n\n");
+    // fnlcosts_mid_up(&stack_a, &stack_b, size / 2);
+    printf("\n\n0000000000000000000000000000000000000000\n\n"); 
+    printf("\n\n0000000000000000000000000000000000000000\n\n"); 
+    printf("\n\n0000000000000000000000000000000000000000\n\n"); 
+    printf("\n\n0000000000000000000000000000000000000000\n\n"); 
+
+    print_stack(stack_b);
+    print_stack(stack_b);
+    printf("\n# ^ ------------------------------  1B #\n");
+	printf("# |  S T A C K  B  ------------------- #\n");	
+	printf("# | ---------------------------------- #\n\n");
+ */
+
+    /* print_stack(stack_a);
+    printf("\n# ^ ------------------------------  1A #\n");
+    printf("# | S T A C K  A  -------------------- #\n");
+	printf("# | ---------------------------------- #\n\n\n\n\n");
+    
+    print_stack(stack_b);
+    printf("\n# ^ ------------------------------  1B #\n");
+	printf("# |  S T A C K  B  ------------------- #\n");	
+	printf("# | ---------------------------------- #\n\n");
+
+    printf("\n0000000000000000000000000000000000000000\n\n"); */
+
+    // ob_radix2(&stack_a, &stack_b);
+    
+    /* print_stack(stack_a);
+    printf("\n# ^ ------------------------------  2A #\n");
+    printf("# | S T A C K  A  -------------------- #\n");
+	printf("# | ---------------------------------- #\n\n\n\n\n");
+    
+    print_stack(stack_b);
+    printf("\n# ^ ------------------------------  2B #\n");
+	printf("# |  S T A C K  B  ------------------- #\n");	
+
+    printf("\n\n0000000000000000000000000000000000000000\n\n"); */
+
+    // ob_radix3(&stack_a, &stack_b);
+
+    /* print_stack(stack_a);
+    printf("\n# ^ ------------------------------  3A #\n");
+    printf("# | S T A C K  A  -------------------- #\n");
+	printf("# | ---------------------------------- #\n\n\n\n\n");
+    
+    print_stack(stack_b);
+    printf("\n# ^ ------------------------------  3B #\n");
+	printf("# |  S T A C K  B  ------------------- #\n");
+
+    printf("\n\n0000000000000000000000000000000000000000\n\n"); */								
+
+	/* print_stack(stack_a);
+    printf("\n# ^ ------------------------------  4A #\n");
+    printf("# | S T A C K  A  -------------------- #\n");
+	printf("# | ---------------------------------- #\n\n\n\n\n");
+    
+    print_stack(stack_b);
+    printf("\n# ^ ------------------------------  4B #\n");
+	printf("# |  S T A C K  B  ------------------- #\n");	
+	printf("# | ---------------------------------- #\n\n");
+
+    printf("\n0000000000000000000000000000000000000000\n\n"); */
+    /* print_stack(stack_a);							
+	printf("\n# ^ ------------------------------  5A #\n");
+    printf("# |  S T A C K  A  ------------------- #\n");
+	printf("# | ---------------------------------- #\n\n\n\n\n");
+
+	print_stack(stack_b);				
+	//clear_stack(stack_a)
+	printf("\n# ^ ------------------------------  5B #\n");
+	printf("# |  S T A C K  B  ------------------- #\n");	
+	printf("# | ---------------------------------- #\n\n\n\n");
+
+
+
+// $ // ----------------------------------------------------------------- // # //
+// $ // ----------------------------------------------------------------- // # //
+
+// $ // ----------------------------------------------------------------- // # //
+//      Explication des commandes autorisees pour le projet 
+// $ // ----------------------------------------------------------------- // # //
+
+// void sa(stack **stack_a, stack **stack_b);   //  Intervertit les 2 premiers éléments au sommet de la pile a. Ne fait rien s’il n’y en a qu’un ou aucun.
+// void sb(stack **stack_a, stack **stack_b);   //  Intervertit les 2 premiers éléments au sommet de la pile b. Ne fait rien s’il n’y en a qu’un ou aucun
+// void ss(stack **stack_a, stack **stack_b);   //  sa et sb en même temps.
+
+// void pa(stack **stack_a, stack **stack_b);   //  Prend le premier élément au sommet de b et le met sur a. Ne fait rien si b est vide.
+// void pb(stack **stack_a, stack **stack_b);   //  Prend le premier élément au sommet de a et le met sur b. Ne fait rien si a est vide.
+
+// void ra(stack **stack_a, stack **stack_b);   //  Décale d’une position vers le haut tous les élements de la pile a. Le premier élément devient le dernier.
+// void rb(stack **stack_a, stack **stack_b);   //  Décale d’une position vers le haut tous les élements de la pile b. Le premier élément devient le dernier.
+// void rr(stack **stack_a, stack **stack_b);   //  ra et rb en même temps.
+
+// void rra(stack **stack_a, stack **stack_b);  //  Décale d’une position vers le bas tous les élements de la pile a. Le dernier élément devient le premier.
+// void rrb(stack **stack_a, stack **stack_b);  //  Décale d’une position vers le bas tous les élements de la pile b. Le dernier élément devient le premier.
+// void rrr(stack **stack_a, stack **stack_b);  //  rra et rrb en même temps.
+
+// $ // ----------------------------------------------------------------- // # //
+// $ // ----------------------------------------------------------------- // # //
+
+// $ // ----------------------------------------------------------------- // # //
+//	Prototype main sans les arguments
+// $ // ----------------------------------------------------------------- // # //
+
+
+/*     printf("----------------------------\n");
+
+    stack  *stack;
+    //stack  stack_b;
+    stack = create_new_stack();
+    print_stack(stack);
+    if (is_stack_clear(stack) == clear)
+        printf("->       stack clear !\n");
+    if (is_stack_clear(stack) == unclear)
+        printf("->       stack unclear !\n");
+    stack = elem_addto_stack(stack, 5);
+    stack = elem_addto_stack(stack, 10);
+      stack = elem_addto_stack(stack, 15);
+    stack = elem_addto_stack(stack, 1110);
+    printf("----------------------------\n");
+    print_stack(stack);
+    if (is_stack_clear(stack) == clear)
+        printf("->       stack clear !\n");
+    if (is_stack_clear(stack) == unclear)
+        printf("->       stack unclear !\n");
+    printf("----------------------------\n");
+    stack = clear_stack(stack);
+    if (is_stack_clear(stack) == clear)
+        printf("->       stack clear !\n");
+    if (is_stack_clear(stack) == unclear)
+        printf("->       stack unclear !\n");
+    print_stack(stack); */
+ 

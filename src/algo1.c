@@ -6,12 +6,11 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:38:32 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/06 22:38:35 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:35:24 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
-
 
 stack	*give_ra_rra(stack *sta)
 {	
@@ -47,28 +46,6 @@ stack	*give_rb_rrb(stack *stb)
 		size--;
 	}
 	return (stb);
-}
-
-void	redirect_sta(stack *sta, int pos_min_sta)
-{
-	while (sta->value != pos_min_sta)
-		ft_ra(&sta);
-	ft_ra(&sta);
-}
-
-int		posmin_sta(stack *sta)
-{
-	stack	*first_pos = sta;
-	int		min_val_sta = sta->value;
-
-	while (sta->next)
-	{
-		if (sta->value < min_val_sta)
-			min_val_sta = sta->value;
-		sta = sta->next;
-	}
-	sta = first_pos;
-	return (min_val_sta);
 }
 
 void	search_elem_back_a(stack **sta, stack stb)
@@ -116,46 +93,17 @@ void	choose_which_way_a(stack **sta, stack stb)
 
 void	what_move_a(stack *sta, stack *stb)
 {
-	while (stb)
+	int		size = get_stacklen(stb) / 2;
+	 
+	while (size > 0)
 	{
 		choose_which_way_a(&sta, *stb);
 		ft_pa(&sta, &stb);
+		size--;
 	}
 	// choose_which_way_a(&sta, *stb);
 	// ft_pa(&sta, &stb);
 }
- 
-/* void	start_max(stack **sta, stack **stb, int tmp_size)
-{	
-	// int		save_size = tmp_size;	
-	// int		eight = tmp_size / 300;
-	int		size = tmp_size;
-	// int		tmp1_size = tmp_size;
-	int		mid = tmp_size / 2;
-	int		quad = mid / 2;
-	int		quadquad = quad / 2;
-	int		quadquadquad = quadquad / 2;
-	int		quadx4 = quadquadquad / 2;
-	int		cmpr = mid + quad + quadquad + quadquadquad + quadx4;
-	int		last_idx = tmp_size;
-	
-	size *= 2;
-	while (size > 0)
-	{
-		if ((*stb)->target_pos >= cmpr && (*stb)->target_pos <= last_idx)
-		{
-			ft_pa(sta, stb);
-			if ((*sta)->value > (*sta)->next->value)
-				ft_sa(sta);
-			last_idx -= quadx4;
-			cmpr -= quadx4;
-		}
-		else
-			ft_rb(stb);
-		size -= 1;
-	}
-	// what_move((*sta), (*stb));
-} */
 
 void	maxmin(stack **sta, stack **stb, int tmp_size)
 {
@@ -264,43 +212,131 @@ void	ft_div(stack **sta, stack **stb, int size)
 	ft_div2(sta, stb, mid, tmp_size);
 }
 
-void	push_in_chunk(stack **sta, stack **stb)
+boolean	check_push(stack *sta, int *chunk)
 {
-	ft_pb(sta, stb);
+	if (sta->target_pos >= chunk[0] && sta->target_pos < chunk[1])
+		return (true);
+	return (false);
 }
 
-void	do_chunks(stack *sta, stack *stb)
+void	chunk_it(stack *sta, stack *stb, int size)
 {
-	int		size = get_stacklen(sta) / 8;
-	int		tmp2size = size;
-	int		tmp1size = size;
-	int		orig = 0;
+	int		*chunk;
+
+	chunk[0] = 0;
+	if (size > 99)
+		chunk[1] = size / 12;
+	else 
+		chunk[1] = size / 3;
+	chunk[2] = chunk[1];
+	while (sta)
+	{
+		while (chunk[2] > 0)
+		{
+			if (check_push(sta, chunk))
+			chunk[2]--;
+			else 
+				ft_ra(&sta);
+		}
+		chunk[0] += chunk[1];
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	int		chunk2 = size / 12;
+	int 	chunk1 = 0;
+	int		count_elem = chunk2;
 
 	while (sta)
 	{
-		while (tmp1size > 0)
+		count_elem = size / 12;
+		while (count_elem > 0)
 		{
 			if (!sta)
-				return ;
-			if (sta->target_pos >= orig && sta->target_pos < size)
+				break ;
+			if (check_push(sta, chunk1, chunk2))
 			{
-				push_in_chunk(&sta, &stb);
-				tmp1size--;
+				ft_pb(&sta, &stb);
+				count_elem--;
 			}
 			else
 				ft_ra(&sta);
 		}
-		orig += tmp2size;
-		tmp1size = tmp2size;
-		size += tmp2size;
+		chunk2 += size / 12;
+		chunk1 += size / 12;
 	}
-	maxmin(&sta, &stb, get_stacklen(stb));
+	// what_move_a(sta, stb);
+	// maxmin(&sta, &stb, size);
 }
 
-				// printf("(*sta)->value: %d\n", (*sta)->value);
+// printf("(*sta)->value: %d\n", (*sta)->value);
 				// printf("(*sta)->ra: %d\n", (*sta)->ra);
 				// printf("(*sta)->rra: %d\n\n", (*sta)->rra);
 				// printf("(*stb)->value: %d\n", (*stb)->value);
 				// printf("(*stb)->rb: %d\n", (*stb)->rb);
 				// printf("(*stb)->rrb: %d\n", (*sta)->rrb);
 				// printf("(*stb)->final_cost: %d\n\n\n\n", (*stb)->final_cost);
+
+/* void	chunk_it(stack *sta, stack *stb, int size)
+{
+	int		chunk2 = size / 12;
+	int 	chunk1 = 0;
+	int		count_elem = chunk2;
+
+	while (sta)
+	{
+		count_elem = size / 12;
+		while (count_elem > 0)
+		{
+			if (!sta)
+				break ;
+			if (check_push(sta, chunk1, chunk2))
+			{
+				ft_pb(&sta, &stb);
+				count_elem--;
+			}
+			else
+				ft_ra(&sta);
+		}
+		chunk2 += size / 12;
+		chunk1 += size / 12;
+	}
+	// what_move_a(sta, stb);
+	// maxmin(&sta, &stb, size);
+}
+
+
+boolean	check_push(stack *sta, int *chunk)
+{
+	if (sta->target_pos >= chunk1 && sta->target_pos < chunk2)
+		return (true);
+	return (false);
+}
+
+ */

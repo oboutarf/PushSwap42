@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:26:14 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/05 13:35:31 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/07 12:17:55 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int     max_elem(stack **sta)
 int        get_stacklen(stack *sta)
 {
     int     total_len;
-    
+
     total_len = 0;
     while (sta->next != NULL)
     {

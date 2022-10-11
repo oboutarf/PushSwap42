@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:21:33 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/03 20:33:08 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:14:52 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ booln   is_stack_clear(stack *st)
 
 // $ // ----------------------------------------------------------------- // # //
 
-stack   *elem_addto_stack(stack **st, int x, int index)
+stack   *elem_addto_stack(stack **st, int x)
 {
     stack   *element;
 
@@ -35,8 +35,6 @@ stack   *elem_addto_stack(stack **st, int x, int index)
         return (NULL);
     }
     element->value = x;
-    element->index = index;
-    //element->cost = 0;
     element->next = *st;
     *st = element;
     return (element);
@@ -47,7 +45,7 @@ stack   *elem_addto_stack(stack **st, int x, int index)
 stack   *clear_stack(stack *st)
 {
     stack   *element;
-    
+
     if (is_stack_clear(st) == clear)
         return (create_new_stack());
     element = st->next;
@@ -75,19 +73,16 @@ booln   ft_isnumber(char *str)
 
 // $ // ----------------------------------------------------------------- // # //
 
-void     ft_index(stack **st)
+void     ft_index(stack *st)
 {
-    stack   *start;
-    int     idx;
-
-    idx = 0;
-    start = (*st);
-    while ((*st) != NULL)
+    int     index;
+    
+    index = 0;
+    while (st)
     {
-        (*st)->index = idx++;
-        (*st) = (*st)->next;
+        st->pos = index++;
+        st = st->next;
     }
-    (*st) = start;    // Important pour chaque liste permet de garder la position du pointeur//
 }
 
 // $ // ----------------------------------------------------------------- // # //

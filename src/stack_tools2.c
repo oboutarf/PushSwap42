@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:04:30 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/09/28 11:51:32 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:19:05 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ booln   fill_stack(stack **stack_a, int ac, char **av)
 {
     while (ac > 0)
     {
-        (*stack_a) = elem_addto_stack(stack_a, ft_atoi(av[ac]), ac - 1);
+        (*stack_a) = elem_addto_stack(stack_a, ft_atoi(av[ac]));
         if (!ft_isnumber(av[ac]))
             return (clear_stack(*stack_a), 0);
         if (!(*stack_a))
@@ -87,12 +87,13 @@ void    print_stack(stack *st)
     }
     while (is_stack_clear(st) == unclear)
     {
-        printf("  %d    target_pos: %d, index: %d\n", st->value, st->target_pos, st->index);
+        printf("  %d    final_index: %d, ra : %d, rra : %d, rb : %d, rrb : %d\n", st->value, st->final_index, st->ra, st->rra, st->rb, st->rrb);
         st = st->next;
     }
 	st = start;
     return ;
 }
+
 
 // $ // ----------------------------------------------------------------- // # //
 // $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //

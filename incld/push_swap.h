@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/07 18:15:13 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/11 20:57:16 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ typedef enum boolean
 
 typedef struct stack
 {
-    // int             final_cost_rra;
-    // int             final_cost_ra;
-    int             target_pos;
+    int             final_cost_a;
+    int             final_cost_b;
+    int             final_index;
     int             value;
-    int             index;
+    int             pos;
     int             rra;
     int             rrb;
     int             ra;
@@ -74,14 +74,14 @@ int     ft_numlen(int n);
 void	maxmin(stack *sta, stack *stb);
 void	what_move_a(stack *sta, stack *stb);
 void	chunk_it(stack *sta, stack *stb, int size);
+int		get_origlen(stack *sta, stack *stb);
 
-
-stack	*give_rb_rrb(stack *stb);
+void    give_rb_rrb(stack *stb);
 void	move_now(stack **sta, stack **stb, int tmp_ra_cheap, int tmp_rb_cheap);
 void	what_move(stack *sta, stack *stb, int save_last_val);
 void    ft_div(stack **sta, stack **stb, int size);
 void	instructs_achiev(stack **sta, stack **stb);
-void	give_ra_rb(stack **sta, stack **stb);
+void	give_ra_rra(stack *sta, stack *stb);
 void    ft_rrr(stack **sta, stack **stb);
 void    ft_pa(stack **sta, stack **stb);
 void    ft_pb(stack **sta, stack **stb);
@@ -89,7 +89,7 @@ void    ft_rr(stack **sta, stack **stb);
 void	ft_ss(stack **sta, stack **stb);
 void    give_target(stack *sta);
 void    print_stack(stack *st);
-void    ft_index(stack **st);   // bug d'index!!! A corriger.
+void    ft_index(stack *st);
 void    ft_rra(stack **sta);
 void    ft_rrb(stack **stb);
 void    ft_ra(stack **sta);
@@ -101,7 +101,7 @@ booln    fill_stack(stack **stack_a, int ac, char **av);
 booln    ft_isnumber(char *str);
 booln    ft_isdup(char **av);
 booln    is_stack_clear(stack *st);
-stack   *elem_addto_stack(stack **st, int x, int index);
+stack   *elem_addto_stack(stack **st, int x);
 stack   *clear_stack(stack *st);
 stack   *create_new_stack(void);
 

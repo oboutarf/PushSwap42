@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:54:30 by oscobou           #+#    #+#             */
-/*   Updated: 2022/09/30 20:11:14 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/11 20:35:46 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,6 @@ void    ft_ra(stack **sta)
     write(1, "ra\n", 3);
     save_a = (*sta);
     tmp = (*sta)->next;
-    // printf("tmp %d\n", (*sta)->value);
-    // printf("tmp %d\n", tmp->value);
     while ((*sta)->next != NULL)
         (*sta) = (*sta)->next;
     (*sta)->next = save_a;

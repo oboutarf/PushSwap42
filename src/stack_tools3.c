@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:26:14 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/07 18:10:03 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:15:28 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void    give_target(stack *sta)
                 idx++;
             tmp2 = tmp2->next;
         }
-        tmp->target_pos = idx;
+        tmp->final_index = idx;
         tmp = tmp->next;
     }
 }

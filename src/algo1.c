@@ -6,34 +6,20 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:38:32 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/11 21:00:30 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:57:59 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
-void	give_ra_rra(stack *sta, stack *stb)
-{
-	int		size[3];
+////////////////////////////////////////////////////+   UPGRADED VERSION   +\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/
 
+void	give_ra_rra(stack *sta)
+{
+	int		size[2];
 
 	size[0] = get_stacklen(sta);
 	size[1] = 0;
-	ft_index(sta);
-	ft_index(stb);
-	while (sta)
-	{
-		sta->ra = sta->pos;
-		sta->rra = size[0] - sta->pos;
-		sta = sta->next;
-	}
-	while (stb)
-	{
-		stb->rb = stb->pos;
-		stb->rrb = size[0] - stb->pos;
-		stb = stb->next;
-	}
-/*	
 	while (size[0])
 	{
 		sta->ra = size[1];
@@ -42,11 +28,11 @@ void	give_ra_rra(stack *sta, stack *stb)
 			sta->rra = 0;
 		sta = sta->next;
 		size[1]++;
-	}*/
+	}
 }
 
 void	give_rb_rrb(stack *stb)
-{	
+{
 	int		size[3];
 
 	size[0] = get_stacklen(stb);
@@ -62,75 +48,108 @@ void	give_rb_rrb(stack *stb)
 	}
 }
 
-void	search_elem_back_a(stack **sta, stack stb)
+int		give_best_cost(stack *stb)
 {
-	stack	*last_a;
-
-	while (1)
+	int		best_cost = stb->final_cost;
+	while (stb->next)
 	{
-		give_ra_rra((*sta), &stb);
-		last_a = *sta;
-		while (last_a->next)
-			last_a = last_a->next;
-		if ((*sta)->value >= stb.value && last_a->value <= stb.value)
-			break ;
-		ft_rra(sta);
+		if (stb->final_cost < best_cost)
+			best_cost = stb->final_cost;
+		stb = stb->next;
 	}
+	return (best_cost);
 }
 
-void	search_elem_a(stack **sta, stack stb)
+void	move_it(stack *sta, stack *stb)
 {
-	stack	*last_a;
-
-	while (1)
-	{
-		give_ra_rra((*sta), &stb);
-		last_a = *sta;
-		while (last_a->next)
-			last_a = last_a->next;
-		if ((*sta)->value > stb.value && last_a->value < stb.value)
-			break ;
-		ft_ra(sta);
-	}
-}
-
-void	choose_which_way_a(stack **sta, stack stb)
-{
-	stack *last_a;
-
-	last_a = *sta;
-	while (last_a->next)
-		last_a = last_a->next;
-	if (stb.value < last_a->value)
-		search_elem_back_a(sta, stb);
+	stack	*stb_save = stb;
+	int		cost[4];
+	
+	ft_index(sta);
+	ft_index(stb);
+	cost[0] = give_best_cost(stb);
+	while (stb_save->final_cost != cost[0])
+		stb_save = stb_save->next;
+	cost[1] = stb->target_pos;
+	cost[2] = get_stacklen(sta);
+	if (stb->target_pos > cost[2] / 2)
+		while (cost[1]-- > 0)
+			ft_rra(&sta);
 	else
-		search_elem_a(sta, stb);
+		while (cost[1]-- > 0)
+			ft_ra(&sta);
+	cost[3] = stb_save->pos;
+	if (stb_save->pos > cost[2] / 2)
+		while (cost[3]-- > 0)
+			ft_rrb(&stb);
+	else 
+		while (cost[3]-- > 0)
+			ft_rb(&stb);
 }
 
-void	what_move_a(stack *sta, stack *stb)
+void	apply_cost(stack *sta, stack *stb)
+{
+	int		len = get_stacklen(stb);
+
+	ft_index(sta);
+	ft_index(stb);
+	give_ra_rra(sta);
+	give_rb_rrb(stb);
+	if (stb->pos < len / 2)
+		stb->final_cost = stb->rb;
+	else
+		stb->final_cost = stb->rrb;
+	if (sta->pos < len / 2)
+		stb->final_cost += sta->ra;
+	else
+		stb->final_cost += sta->rra;		
+}
+
+stack	*find_lastval(stack *sta, int index)
+{
+	stack	*sta_save;
+	int		i = 0;
+
+	sta_save = sta;
+	while (i++ < index)
+		sta_save = sta_save->next;
+	return (sta_save);
+}
+
+void	give_costb(stack **sta, stack **stb)
+{
+	stack *tmpA = *sta;
+	stack *tmpB = *stb;
+	int		save = 100000;
+
+	while (tmpB)
+	{
+		tmpA = *sta;
+		ft_index(tmpA);
+		ft_index(tmpB);
+		while (tmpA)
+		{
+			if (tmpA->value > tmpB->value && tmpA->value < save)
+			{
+				tmpB->target_pos = tmpA->pos;
+				save = tmpA->value;
+			}
+			tmpA = tmpA->next;			
+		}
+		tmpB = tmpB->next;
+	}
+}
+
+void	algo(stack *sta, stack *stb)
 {
 	while (stb)
 	{
-		choose_which_way_a(&sta, *stb);
-		printf("\nPILEA\n\n");
 		print_stack(sta);
-		printf("\nPILEB\n\n");
-		print_stack(stb);
 		printf("\n");
+		give_costb(&sta, &stb);
+		move_it(sta, stb);
 		ft_pa(&sta, &stb);
 	}
-}
-
-int		get_origlen(stack *sta, stack *stb)
-{
-	int		i[2];
-
-	while (sta && i[0]++)
-		sta = sta->next;
-	while (stb && i[1]++)
-		stb = stb->next;
-	i[0] += i[1]; 
-	return (i[0]);
 }
 
 void	chunk_it(stack *sta, stack *stb, int size)
@@ -140,7 +159,7 @@ void	chunk_it(stack *sta, stack *stb, int size)
 	chunk = malloc(sizeof(int) * 10);
 	chunk[0] = 0;
 	if (size > 99)
-		chunk[1] = size / 10;
+		chunk[1] = size / 4;
 	else
 		chunk[1] = size / 2;
 	chunk[2] = chunk[1];
@@ -175,9 +194,6 @@ void	chunk_it(stack *sta, stack *stb, int size)
 		chunk[0] += chunk[3];
 		chunk[1] += chunk[3];
 	}
-	give_ra_rra(sta, stb);
-	what_move_a(sta, stb);
-	return ;
+	ft_ra(&sta);
+	algo(sta, stb);
 }
-
-

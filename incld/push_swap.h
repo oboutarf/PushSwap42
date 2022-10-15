@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/12 18:56:33 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/15 17:13:02 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void    ft_pa(stack **sta, stack **stb);
 void    ft_pb(stack **sta, stack **stb);
 void    ft_rr(stack **sta, stack **stb);
 void	ft_ss(stack **sta, stack **stb);
-void	move_it(stack *sta, stack *stb);
+void	move_it(int to_move, stack **sta, stack **stb);
 void    give_rb_rrb(stack *stb);
 void	give_ra_rra(stack *sta);
 void    give_target(stack *sta);

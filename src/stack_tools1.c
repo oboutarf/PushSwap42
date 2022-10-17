@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:21:33 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/11 19:14:52 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:19:54 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ stack   *elem_addto_stack(stack **st, int x)
         return (NULL);
     }
     element->value = x;
+    element->final_cost = -1;
     element->next = *st;
     *st = element;
     return (element);

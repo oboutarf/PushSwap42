@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:04:30 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/12 18:16:56 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/17 18:21:10 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void    print_stack(stack *st)
     }
     while (is_stack_clear(st) == unclear)
     {
-        printf("  %d    final_index: %d, ra : %d, rra : %d, rb : %d, rrb : %d, final_cost: %d, target_pos: %d, pos: %d\n", st->value, st->final_index, st->ra, st->rra, st->rb, st->rrb, st->final_cost, st->target_pos, st->pos);
+        printf("val = %d, final_index: %d, final_cost: %d, next_pos: %d, pos: %d\n", st->value, st->final_index, st->final_cost, st->next_pos, st->pos);
         st = st->next;
     }
 	st = start;

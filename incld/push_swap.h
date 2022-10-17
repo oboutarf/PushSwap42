@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/15 17:13:02 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:15:44 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@ typedef enum boolean
 typedef struct stack
 {
     int             final_index;
-    int             target_pos;
+    // int             target_pos;
     int             final_cost;
+    int             next_pos;
     int             value;
     int             pos;
-    int             rra;
-    int             rrb;
-    int             ra;
-    int             rb;
+    // int             rra;
+    // int             rrb;
+    // int             ra;
+    // int             rb;
     struct  stack   *next;
 }stack;
 

@@ -6,14 +6,13 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:38:32 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/15 18:34:53 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/17 19:04:25 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
 ////////////////////////////////////////////////////+   UPGRADED VERSION   +\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/
-
 
 int		Search_LowCost(stack *stb)
 {
@@ -22,7 +21,7 @@ int		Search_LowCost(stack *stb)
 
 	while (stb)
 	{
-		if (stb->final_cost < f_cost)
+		if (stb->final_cost < f_cost && stb->final_cost >= 0)
 		{
 			f_cost = stb->final_cost;
 			pos = stb->pos;
@@ -32,101 +31,151 @@ int		Search_LowCost(stack *stb)
 	return (pos);
 }
 
-
 void	move_it(int	to_move, stack **sta, stack **stb)
 {
-	int	mediane_a = get_stacklen(*sta) / 2;
-	int	mediane_b = get_stacklen(*stb) / 2;
-	int	nb_rotate_a;
-	int	nb_rotate_b;
-	stack	*tmp;
+	int		nb_rotate_a;
+	int		nb_rotate_b;
+	stack	*stb_save;
 
-	tmp = *stb;
-	while (tmp->pos != to_move)
-		tmp = tmp->next;
-	nb_rotate_a = tmp->target_pos;
-	nb_rotate_b = tmp->pos;
-	while (nb_rotate_b--)
+	//	On cherche le maillon a bouger dans B
+	stb_save = *stb;
+	while (stb_save->pos != to_move)
+		stb_save = stb_save->next;
+	//	On recupere les positions (pos de A == nb de rotate a ; pos de B == nb de rotate b)
+	nb_rotate_a = stb_save->next_pos;
+	nb_rotate_b = stb_save->pos;
+	//	On polarise le resultat ( negatif == reverse rotate ; positif == rotate)
+	if (nb_rotate_a > get_stacklen(*sta) - nb_rotate_a)
 	{
-		if (to_move < mediane_b)
-			ft_rb(stb);
-		else
-			ft_rrb(stb);
+		nb_rotate_a = get_stacklen(*sta) - nb_rotate_a;
+		nb_rotate_a *= -1;
 	}
-	while (nb_rotate_a--)
+	if (nb_rotate_b > get_stacklen(*stb) - nb_rotate_b)
 	{
-		if (tmp->target_pos < mediane_a)
+		nb_rotate_b = get_stacklen(*stb) - nb_rotate_a;
+		nb_rotate_b *= -1;
+	}
+	//	On teste le signe et on fait les mouvements
+	if (nb_rotate_a > 0)
+		while (nb_rotate_a--)
 			ft_ra(sta);
-		else
+	else
+		while (nb_rotate_a++ != 0)
 			ft_rra(sta);
+	if (nb_rotate_b > 0)
+		while (nb_rotate_b--)
+			ft_rb(stb);
+	else
+		while (nb_rotate_b++ != 0)
+			ft_rrb(stb);
+}
+
+int		search_Prev(stack *sta, int index_of_current_node)
+{
+	int	i;
+	int	index_of_previous_node;
+	int	value_of_previous_node;
+
+	i = 0;
+	if (index_of_current_node == 0)
+		index_of_previous_node = get_stacklen(sta) - 1;
+	else
+		index_of_previous_node = index_of_current_node - 1;
+//	printf("\nindex of prev: %i\n", index_of_previous_node);
+	while (i++ < index_of_previous_node)
+		sta = sta->next;
+	value_of_previous_node = sta->value;
+	return (value_of_previous_node);
+}
+
+void	calc_final_cost(stack *sta, stack *stb, int sta_len, int stb_len)
+{
+	int	nb_r_b;
+	int	nb_rr_b;
+	int	nb_r_a;
+	int	nb_rr_a;
+	int	all_costs[4];
+	int	i;
+
+	i = 0;
+	nb_r_b = stb->pos;
+	nb_rr_b = stb_len - nb_r_b;
+	nb_r_a = sta->pos;
+	nb_rr_a = sta_len - nb_r_a;
+	all_costs[0] = nb_r_a + nb_r_b;
+	all_costs[1] = nb_r_a + nb_rr_b;
+	all_costs[2] = nb_rr_a + nb_r_b;
+	all_costs[3] = nb_rr_a + nb_rr_b;
+	while (i < 4)
+	{
+		if (all_costs[i] < all_costs[0])
+			all_costs[0] = all_costs[i];
+		i++;
+	}
+	if (stb->final_cost < 0 || stb->final_cost < all_costs[0])
+	{
+		stb->final_cost = all_costs[0];
+		stb->next_pos = sta->pos;
 	}
 }
-
-
-int		search_Prev(stack *sta)
-{
-	int		prev = 0;
-
-	while (sta->next)
-		sta = sta->next;
-	prev = sta->final_index;
-	return (prev);
-}
-
-
-int	final_Cost(stack *sta, stack *stb)
-{
-	stb->final_cost = sta->pos + stb->pos;
-	return (stb->final_cost);
-}
-
 
 void	instruct_B(stack *sta, stack *stb)
 {
-	// int		prev = search_Prev(sta);
 	stack	*sta_save = sta;
-	int		cost = 1000;
+	stack	*stb_save = stb;
+	int		prev = 0;
 
 	while (stb)
 	{
 		sta = sta_save;
 		while (sta)
 		{
-			// write(1, "yoyo\n", 5);
-			if (stb->final_index < sta->final_index)
+			prev = search_Prev(sta_save, sta->pos);
+			if (stb->value < sta->value && prev < stb->value)
 			{
-				if (final_Cost(sta, stb) < cost)
-				{
-					cost = final_Cost(sta, stb);
-					stb->target_pos = sta->pos;
-				}
+			//	printf("\n\nsta->pos: %i\nstb->pos: %i\n", sta->pos, stb->pos);
+				calc_final_cost(sta, stb, get_stacklen(sta_save), get_stacklen(stb_save));
 			}
-			else
-			{
-				// prev = sta->final_index;
-				sta = sta->next;
-			}
+			sta = sta->next;
 		}
+		stb = stb->next;
+	}
+}
+
+void	reset_instruct_B(stack *stb)
+{
+	while (stb != NULL)
+	{
+		stb->final_cost = -1;
+		stb->next_pos = 0;
 		stb = stb->next;
 	}
 }
 
 void	algo(stack **sta, stack **stb)
 {
-	int	node_to_move;	
+	int	node_to_move;
 	
-	while (stb)
+	while (*stb)
 	{
 		instruct_B(*sta, *stb);
-		// write(1, "yoyo", 4);
+		
+		write(1, "\n\n\n\nA\n", 6);
+		print_stack(*sta);
+		write(1, "\n\n\n\nB\n", 6);
+		print_stack(*stb);
+		
 		node_to_move = Search_LowCost(*stb);
+		
 		move_it(node_to_move, sta, stb);
+		
 		ft_pa(sta, stb);
+		
 		ft_index(*sta);
 		ft_index(*stb);
+		reset_instruct_B(*stb);
 	}
 }
-
 
 void	chunk_it(stack *sta, stack *stb, int size)
 {

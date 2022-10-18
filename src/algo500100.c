@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo1.c                                            :+:      :+:    :+:   */
+/*   algo500100.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 14:38:32 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/18 12:54:25 by oboutarf         ###   ########.fr       */
+/*   Created: 2022/10/18 17:32:45 by oboutarf          #+#    #+#             */
+/*   Updated: 2022/10/18 21:01:58 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,11 @@ void	move_it(int	to_move, stack **sta, stack **stb)
 	int		nb_rotate_b;
 	stack	*stb_save;
 
-	//	On cherche le maillon a bouger dans B
 	stb_save = *stb;
 	while (stb_save->pos != to_move)
 		stb_save = stb_save->next;
-	//	On recupere les positions (pos de A == nb de rotate a ; pos de B == nb de rotate b)
 	nb_rotate_a = stb_save->next_pos;
 	nb_rotate_b = stb_save->pos;
-	//	On polarise le resultat ( negatif == reverse rotate ; positif == rotate)
 	if (nb_rotate_a > get_stacklen(*sta) - nb_rotate_a)
 	{
 		nb_rotate_a = get_stacklen(*sta) - nb_rotate_a;
@@ -55,7 +52,6 @@ void	move_it(int	to_move, stack **sta, stack **stb)
 		nb_rotate_b = get_stacklen(*stb) - nb_rotate_b;
 		nb_rotate_b *= -1;
 	}
-	//	On teste le signe et on fait les mouvements
 	if (nb_rotate_a > 0)
 		while (nb_rotate_a--)
 			ft_ra(sta);
@@ -81,7 +77,6 @@ int		search_Prev(stack *sta, int index_of_current_node)
 		index_of_previous_node = get_stacklen(sta) - 1;
 	else
 		index_of_previous_node = index_of_current_node - 1;
-//	printf("\nindex of prev: %i\n", index_of_previous_node);
 	while (i++ < index_of_previous_node)
 		sta = sta->next;
 	value_of_previous_node = sta->value;
@@ -132,10 +127,7 @@ void	instruct_B(stack *sta, stack *stb)
 		{
 			prev = search_Prev(sta_save, sta->pos);
 			if (stb->value < sta->value && prev < stb->value)
-			{
-			//	printf("\n\nsta->pos: %i\nstb->pos: %i\n", sta->pos, stb->pos);
 				calc_final_cost(sta, stb, get_stacklen(sta_save), get_stacklen(stb_save));
-			}
 			sta = sta->next;
 		}
 		stb = stb->next;
@@ -159,12 +151,7 @@ void	algo(stack **sta, stack **stb)
 	while (*stb)
 	{
 		instruct_B(*sta, *stb);
-		
-		// write(1, "\n\n\n\nA\n", 6);
-		// print_stack(*sta);
-		// write(1, "\n\n\n\nB\n", 6);
-		// print_stack(*stb);
-		
+			
 		node_to_move = Search_LowCost(*stb);
 		
 		move_it(node_to_move, sta, stb);

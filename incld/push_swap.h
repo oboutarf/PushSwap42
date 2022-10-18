@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/17 17:15:44 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:50:25 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,41 +38,26 @@ typedef enum boolean
 //  Structure des piles A et B
 // $ // ----------------------------------------------------------------- // # //
 
+
 typedef struct stack
 {
     int             final_index;
-    // int             target_pos;
     int             final_cost;
     int             next_pos;
     int             value;
     int             pos;
-    // int             rra;
-    // int             rrb;
-    // int             ra;
-    // int             rb;
     struct  stack   *next;
 }stack;
 
 
-int		get_origlen(stack *sta, stack *stb);
-int     get_stacklen(stack *sta);
-int		ft_strlen(char *str);
-int     ft_atoi(char *nptr);
-int     ft_numlen(int n);
+// $ // ----------------------------------------------------------------- // # //
+//  Foncions pour les Moves
+// $ // ----------------------------------------------------------------- // # //
 
-void	chunk_it(stack *sta, stack *stb, int size);
-void	what_move_a(stack *sta, stack *stb);
-void	give_costb(stack **sta, stack **stb);
 void    ft_pa(stack **sta, stack **stb);
 void    ft_pb(stack **sta, stack **stb);
 void    ft_rr(stack **sta, stack **stb);
 void	ft_ss(stack **sta, stack **stb);
-void	move_it(int to_move, stack **sta, stack **stb);
-void    give_rb_rrb(stack *stb);
-void	give_ra_rra(stack *sta);
-void    give_target(stack *sta);
-void    print_stack(stack *st);
-void    ft_index(stack *st);
 void    ft_rra(stack **sta);
 void    ft_rrb(stack **stb);
 void    ft_ra(stack **sta);
@@ -80,11 +65,32 @@ void    ft_rb(stack **stb);
 void    ft_sa(stack **sta);
 void    ft_sb(stack **sta);
 
+
+
+// $ // ----------------------------------------------------------------- // # //
+//  Foncions Pre-tri et Algo
+// $ // ----------------------------------------------------------------- // # //
+
+int		search_Prev(stack *sta, int index_of_current_node);
+int		Search_LowCost(stack *stb);
+int     get_stacklen(stack *sta);
+int		ft_strlen(char *str);
+int     ft_atoi(char *nptr);
+int     ft_numlen(int n);
+void	chunk_it(stack *sta, stack *stb, int size);
+void	move_it(int to_move, stack **sta, stack **stb);
+void	calc_final_cost(stack *sta, stack *stb, int sta_len, int stb_len);
+void	move_it(int	to_move, stack **sta, stack **stb);
+void	instruct_B(stack *sta, stack *stb);
+void	algo(stack **sta, stack **stb);
+void	reset_instruct_B(stack *stb);
+void    give_target(stack *sta);
+void    print_stack(stack *st);
+void    ft_index(stack *st);
 booln    fill_stack(stack **stack_a, int ac, char **av);
 booln    is_stack_clear(stack *st);
 booln    ft_isnumber(char *str);
 booln    ft_isdup(char **av);
-
 stack   *elem_addto_stack(stack **st, int x);
 stack   *clear_stack(stack *st);
 stack   *create_new_stack(void);

@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/11 19:17:13 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/18 20:23:33 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,15 @@ int     main(int ac, char **av)
     if (!(fill_stack(&stack_a, ac - 1, av)))
         return (write(2, "error\n", 6), 0);
 
-    give_target(stack_a);
     size[0] = get_stacklen(stack_a);
     size[1] = size[0];
-    chunk_it(stack_a, stack_b, size[0]);
+    give_target(stack_a);
+    if (size[0] >= 10)
+        chunk_it(stack_a, stack_b, size[0]);
 
-    // maxmin(&stack_a, &stack_b, size[1]);
-    // maxmin(&stack_a, &stack_b, size);
-    // give_target(stack_a);
-    // ob_radix(&stack_a, &stack_b, size[0]);
-    // ft_div(&stack_a, &stack_b, size);
+    // else if (size[0] == 5)
+    
+    // else if (size[0] == 3)
 
     return (1);
 }

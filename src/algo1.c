@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:38:32 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/17 19:04:25 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/18 12:54:25 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	move_it(int	to_move, stack **sta, stack **stb)
 	}
 	if (nb_rotate_b > get_stacklen(*stb) - nb_rotate_b)
 	{
-		nb_rotate_b = get_stacklen(*stb) - nb_rotate_a;
+		nb_rotate_b = get_stacklen(*stb) - nb_rotate_b;
 		nb_rotate_b *= -1;
 	}
 	//	On teste le signe et on fait les mouvements
@@ -160,10 +160,10 @@ void	algo(stack **sta, stack **stb)
 	{
 		instruct_B(*sta, *stb);
 		
-		write(1, "\n\n\n\nA\n", 6);
-		print_stack(*sta);
-		write(1, "\n\n\n\nB\n", 6);
-		print_stack(*stb);
+		// write(1, "\n\n\n\nA\n", 6);
+		// print_stack(*sta);
+		// write(1, "\n\n\n\nB\n", 6);
+		// print_stack(*stb);
 		
 		node_to_move = Search_LowCost(*stb);
 		

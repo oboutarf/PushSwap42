@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/18 20:23:33 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/20 11:16:12 by oscobou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int     main(int ac, char **av)
         chunk_it(stack_a, stack_b, size[0]);
 
     // else if (size[0] == 5)
-    
     // else if (size[0] == 3)
+    // printf("\n\nStack B\n\n");
+    // print_stack(stack_b);
+    
 
     return (1);
 }

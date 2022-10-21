@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/18 17:50:25 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/20 10:53:14 by oscobou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ typedef enum booln
     clear
 }booln;
 
+
 typedef enum boolean
 {
     false,
     true
 }boolean;
+
 
 // $ // ----------------------------------------------------------------- // # //
 //  Structure des piles A et B
@@ -65,8 +67,6 @@ void    ft_rb(stack **stb);
 void    ft_sa(stack **sta);
 void    ft_sb(stack **sta);
 
-
-
 // $ // ----------------------------------------------------------------- // # //
 //  Foncions Pre-tri et Algo
 // $ // ----------------------------------------------------------------- // # //
@@ -87,10 +87,10 @@ void	reset_instruct_B(stack *stb);
 void    give_target(stack *sta);
 void    print_stack(stack *st);
 void    ft_index(stack *st);
-booln    fill_stack(stack **stack_a, int ac, char **av);
-booln    is_stack_clear(stack *st);
-booln    ft_isnumber(char *str);
-booln    ft_isdup(char **av);
+booln   fill_stack(stack **stack_a, int ac, char **av);
+booln   is_stack_clear(stack *st);
+booln   ft_isnumber(char *str);
+booln   ft_isdup(char **av);
 stack   *elem_addto_stack(stack **st, int x);
 stack   *clear_stack(stack *st);
 stack   *create_new_stack(void);

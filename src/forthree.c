@@ -1,13 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo3.c                                            :+:      :+:    :+:   */
+/*   forthree.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:32:56 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/18 17:33:15 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/23 13:34:36 by oscobou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
+
+void       center_forthree(stack *sta)
+{
+    printf("\n\nStack A\n\n");
+    print_stack(sta);
+
+    if (sta->final_index == 1 && sta->next->final_index == 0 && sta->next->next->final_index == 2)
+        ft_sa(&sta);
+    else if (sta->final_index == 1 && sta->next->final_index == 2 && sta->next->next->final_index == 0)
+        ft_rra(&sta);
+    else if (sta->final_index == 2 && sta->next->final_index == 0 && sta->next->next->final_index == 1)
+        ft_ra(&sta);
+    else if (sta->final_index == 2 && sta->next->final_index == 1 && sta->next->next->final_index == 0)
+    {
+        ft_sa(&sta);
+        ft_rra(&sta);
+    }
+    else if (sta->final_index == 0 && sta->next->final_index == 2 && sta->next->next->final_index == 1)
+    {
+        ft_rra(&sta);
+        ft_sa(&sta);
+    }
+
+    printf("\n\nStack A\n\n");
+    print_stack(sta);
+}

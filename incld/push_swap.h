@@ -6,7 +6,7 @@
 /*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/20 10:53:14 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/10/23 13:26:30 by oscobou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ int     get_stacklen(stack *sta);
 int		ft_strlen(char *str);
 int     ft_atoi(char *nptr);
 int     ft_numlen(int n);
-void	chunk_it(stack *sta, stack *stb, int size);
-void	move_it(int to_move, stack **sta, stack **stb);
 void	calc_final_cost(stack *sta, stack *stb, int sta_len, int stb_len);
-void	move_it(int	to_move, stack **sta, stack **stb);
+void	move_it(int to_move, stack **sta, stack **stb);
+void	chunk_it(stack *sta, stack *stb, int size);
 void	instruct_B(stack *sta, stack *stb);
 void	algo(stack **sta, stack **stb);
 void	reset_instruct_B(stack *stb);
+void    center_forthree(stack *sta);
 void    give_target(stack *sta);
 void    print_stack(stack *st);
 void    ft_index(stack *st);

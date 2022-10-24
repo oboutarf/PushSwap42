@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_meca.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:57:21 by oscobou           #+#    #+#             */
-/*   Updated: 2022/10/20 11:00:16 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/10/24 12:14:30 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ void	put_staup(stack *sta)
 	else
 		while (sta->final_index != 0)
 			ft_rra(&sta);
-	printf("\n\nStack A\n\n");
-	print_stack(sta);
 }
 
 void	reset_instruct_B(stack *stb)
@@ -78,21 +76,14 @@ void	algo(stack **sta, stack **stb)
 	while (*stb)
 	{
 		instruct_B(*sta, *stb);
-			
 		node_to_move = Search_LowCost(*stb);
-		
 		move_it(node_to_move, sta, stb);
-		
 		ft_pa(sta, stb);
-
 		ft_index(*sta);
 		ft_index(*stb);
 		reset_instruct_B(*stb);
 	}
 	reset_instruct_B(*sta);
+	give_target(*sta);
 	put_staup(*sta);
-	// printf("\n\nStack A\n\n");
-	// print_stack(*sta);
-	// printf("\n\nStack B\n\n");
-	// print_stack(*stb);
 }

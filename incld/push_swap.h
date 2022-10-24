@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/23 13:26:30 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/10/24 11:12:19 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int     ft_numlen(int n);
 void	calc_final_cost(stack *sta, stack *stb, int sta_len, int stb_len);
 void	move_it(int to_move, stack **sta, stack **stb);
 void	chunk_it(stack *sta, stack *stb, int size);
+void	center_forfive(stack *sta, stack *stb);
 void	instruct_B(stack *sta, stack *stb);
 void	algo(stack **sta, stack **stb);
 void	reset_instruct_B(stack *stb);

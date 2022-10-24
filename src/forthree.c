@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forthree.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscobou <oscobou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:32:56 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/23 13:34:36 by oscobou          ###   ########.fr       */
+/*   Updated: 2022/10/24 15:00:49 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void       center_forthree(stack *sta)
 {
-    printf("\n\nStack A\n\n");
-    print_stack(sta);
-
+    give_target(sta);
     if (sta->final_index == 1 && sta->next->final_index == 0 && sta->next->next->final_index == 2)
         ft_sa(&sta);
     else if (sta->final_index == 1 && sta->next->final_index == 2 && sta->next->next->final_index == 0)
@@ -33,7 +31,4 @@ void       center_forthree(stack *sta)
         ft_rra(&sta);
         ft_sa(&sta);
     }
-
-    printf("\n\nStack A\n\n");
-    print_stack(sta);
 }

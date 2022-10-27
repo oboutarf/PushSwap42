@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/24 11:12:19 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:00:34 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// $ // ----------------------------------------------------------------- // # //
-//  Structure avec type enum 
-// $ // ----------------------------------------------------------------- // # //
-
 
 typedef enum booln
 {
@@ -28,18 +24,11 @@ typedef enum booln
     clear
 }booln;
 
-
 typedef enum boolean
 {
     false,
     true
 }boolean;
-
-
-// $ // ----------------------------------------------------------------- // # //
-//  Structure des piles A et B
-// $ // ----------------------------------------------------------------- // # //
-
 
 typedef struct stack
 {
@@ -52,10 +41,6 @@ typedef struct stack
 }stack;
 
 
-// $ // ----------------------------------------------------------------- // # //
-//  Foncions pour les Moves
-// $ // ----------------------------------------------------------------- // # //
-
 void    ft_pa(stack **sta, stack **stb);
 void    ft_pb(stack **sta, stack **stb);
 void    ft_rr(stack **sta, stack **stb);
@@ -67,21 +52,18 @@ void    ft_rb(stack **stb);
 void    ft_sa(stack **sta);
 void    ft_sb(stack **sta);
 
-// $ // ----------------------------------------------------------------- // # //
-//  Foncions Pre-tri et Algo
-// $ // ----------------------------------------------------------------- // # //
-
-int		search_Prev(stack *sta, int index_of_current_node);
-int		Search_LowCost(stack *stb);
+int		search_prev(stack *sta, int index_of_current_node);
+int		search_lowcost(stack *stb);
 int     get_stacklen(stack *sta);
 int		ft_strlen(char *str);
 int     ft_atoi(char *nptr);
 int     ft_numlen(int n);
 void	calc_final_cost(stack *sta, stack *stb, int sta_len, int stb_len);
+void	choose_best_cost(stack *sta, stack *stb, int *all_costs);
 void	move_it(int to_move, stack **sta, stack **stb);
-void	chunk_it(stack *sta, stack *stb, int size);
+void	start_process(stack *sta, stack *stb, int size);
 void	center_forfive(stack *sta, stack *stb);
-void	instruct_B(stack *sta, stack *stb);
+void	instruct_b(stack *sta, stack *stb);
 void	algo(stack **sta, stack **stb);
 void	reset_instruct_B(stack *stb);
 void    center_forthree(stack *sta);

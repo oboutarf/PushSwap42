@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:57:21 by oscobou           #+#    #+#             */
-/*   Updated: 2022/10/24 12:14:30 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/27 12:54:20 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	put_staup(stack *sta)
 			ft_rra(&sta);
 }
 
-void	reset_instruct_B(stack *stb)
+void	reset_instruct_b(stack *stb)
 {
 	while (stb != NULL)
 	{
@@ -75,15 +75,15 @@ void	algo(stack **sta, stack **stb)
 	
 	while (*stb)
 	{
-		instruct_B(*sta, *stb);
-		node_to_move = Search_LowCost(*stb);
+		instruct_b(*sta, *stb);
+		node_to_move = search_lowcost(*stb);
 		move_it(node_to_move, sta, stb);
 		ft_pa(sta, stb);
 		ft_index(*sta);
 		ft_index(*stb);
-		reset_instruct_B(*stb);
+		reset_instruct_b(*stb);
 	}
-	reset_instruct_B(*sta);
+	reset_instruct_b(*sta);
 	give_target(*sta);
 	put_staup(*sta);
 }

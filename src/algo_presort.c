@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:56:42 by oscobou           #+#    #+#             */
-/*   Updated: 2022/10/27 13:00:05 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:50:35 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,17 @@ static int	*create_chunk(stack *sta, int size)
 	chunk[1] = size / 4;
 	chunk[2] = chunk[1];
 	chunk[3] = chunk[1];
-	chunk[4] = get_stacklen(sta) + 1;
+	chunk[4] = get_stacklen(sta) - 1;
 	chunk[5] = chunk[4];
 	return (chunk);
+}
+
+void	choose_push_or_rotate(stack **sta, stack **stb, int fifth_chunk)
+{
+	if ((*sta)->final_index != 0 && (*sta)->final_index != fifth_chunk)
+		ft_pb(sta, stb);
+	else
+		ft_ra(sta);
 }
 
 void	call_algo(stack **sta, stack **stb)
@@ -50,10 +58,7 @@ void	start_process(stack *sta, stack *stb, int size)
 			{
 				chunk[2]--;
 				chunk[4]--;
-				if (sta->final_index != 0 && sta->final_index != chunk[5])
-					ft_pb(&sta, &stb);
-				else
-					ft_ra(&sta);
+				choose_push_or_rotate(&sta, &stb, chunk[5]);
 			}
 			else
 				ft_ra(&sta);

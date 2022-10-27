@@ -6,11 +6,27 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:57:21 by oscobou           #+#    #+#             */
-/*   Updated: 2022/10/27 12:54:20 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/27 20:37:03 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
+
+void	time_to_move(stack **sta, stack **stb, int nb_rotate_a, int nb_rotate_b)
+{
+	if (nb_rotate_a > 0)
+		while (nb_rotate_a--)
+			ft_ra(sta);
+	else
+		while (nb_rotate_a++ != 0)
+			ft_rra(sta);
+	if (nb_rotate_b > 0)
+		while (nb_rotate_b--)
+			ft_rb(stb);
+	else
+		while (nb_rotate_b++ != 0)
+			ft_rrb(stb);
+}
 
 void	move_it(int	to_move, stack **sta, stack **stb)
 {
@@ -33,24 +49,14 @@ void	move_it(int	to_move, stack **sta, stack **stb)
 		nb_rotate_b = get_stacklen(*stb) - nb_rotate_b;
 		nb_rotate_b *= -1;
 	}
-	if (nb_rotate_a > 0)
-		while (nb_rotate_a--)
-			ft_ra(sta);
-	else
-		while (nb_rotate_a++ != 0)
-			ft_rra(sta);
-	if (nb_rotate_b > 0)
-		while (nb_rotate_b--)
-			ft_rb(stb);
-	else
-		while (nb_rotate_b++ != 0)
-			ft_rrb(stb);
+	time_to_move(sta, stb, nb_rotate_a, nb_rotate_b);
 }
 
 void	put_staup(stack *sta)
 {
-	int		mid = get_stacklen(sta) / 2;
+	int		mid;
 
+	mid = get_stacklen(sta) / 2;
 	if (sta->final_index < mid)
 		while (sta->final_index != 0)
 			ft_ra(&sta);
@@ -72,7 +78,7 @@ void	reset_instruct_b(stack *stb)
 void	algo(stack **sta, stack **stb)
 {
 	int	node_to_move;
-	
+
 	while (*stb)
 	{
 		instruct_b(*sta, *stb);

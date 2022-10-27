@@ -6,21 +6,16 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:04:30 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/17 18:21:10 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:11:02 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
-// $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //
-// $ // ----------------------------------------------------------------- // # //
-
-stack   *create_new_stack(void)
+stack	*create_new_stack(void)
 {
-    return (NULL);
+	return (NULL);
 }
-
-// $ // ----------------------------------------------------------------- // # //
 
 int	ft_atoi(char *nptr)
 {
@@ -46,54 +41,64 @@ int	ft_atoi(char *nptr)
 	return (num * mns);
 }
 
-// $ // ----------------------------------------------------------------- // # //
-
-int		ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int		i = 0;
+	int		i;
 
+	i = 0;
 	while (str[i])
 		i++;
 	return (i);
 }
 
-// $ // ----------------------------------------------------------------- // # //
-
-booln   fill_stack(stack **stack_a, int ac, char **av)
+booln	ft_isdup(char **av)
 {
-    while (ac > 0)
-    {
-        (*stack_a) = elem_addto_stack(stack_a, ft_atoi(av[ac]));
-        if (!ft_isnumber(av[ac]))
-            return (clear_stack(*stack_a), 0);
-        if (!(*stack_a))
-            return (clear_stack(*stack_a), 0);
-        ac--;
-    }
-    return (1);
-}
-
-// $ // ----------------------------------------------------------------- // # //
-
-void    print_stack(stack *st)
-{
-	stack	 *start;
+	int		i;
+	int		j;
 	
-	start = st;
-    if (is_stack_clear(st) == clear)
-    {
-        printf("->   stack is clear, nothing to display!\n");
-        return ;
-    }
-    while (is_stack_clear(st) == unclear)
-    {
-        printf("val = %d, final_index: %d, final_cost: %d, next_pos: %d, pos: %d\n", st->value, st->final_index, st->final_cost, st->next_pos, st->pos);
-        st = st->next;
-    }
-	st = start;
-    return ;
+	i = 1;
+	j = 0;
+	while (av[j])
+	{
+		while (av[i])
+		{
+			if (ft_atoi(av[i]) == ft_atoi(av[j]))
+				return (1);
+			i++;
+		}
+		j++;
+		i = j + 1;
+		
+	}
+	return (0);
 }
 
+booln	fill_stack(stack **stack_a, int ac, char **av)
+{
+	while (ac > 0)
+	{
+		(*stack_a) = elem_addto_stack(stack_a, ft_atoi(av[ac]));
+		if (!ft_isnumber(av[ac]))
+			return (clear_stack(*stack_a), 0);
+		if (!(*stack_a))
+			return (clear_stack(*stack_a), 0);
+		ac--;
+	}
+	return (1);
+}
 
-// $ // ----------------------------------------------------------------- // # //
-// $ // 00000000000000000000000000000000000000000000000000000000000000000 // # //
+void	print_stack(stack *st)
+{
+	stack	*start;
+
+	start = st;
+	if (is_stack_clear(st) == clear)
+	{
+		printf("->   stack is clear, nothing to display!\n");
+		return ;
+	}
+	while (is_stack_clear(st) == unclear)
+		st = st->next;//---> Add printf to print
+	st = start;
+	return ;
+}

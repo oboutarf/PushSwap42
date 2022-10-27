@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:16:55 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/27 13:00:47 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:01:23 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,12 @@ int     main(int ac, char **av)
     size[0] = get_stacklen(stack_a);
     size[1] = size[0];
     give_target(stack_a);
-
     if (size[0] >= 7)
         start_process(stack_a, stack_b, size[0]);
     else if (size[0] == 3)
         center_forthree(stack_a);
     else if (size[0] == 5)
         center_forfive(stack_a, stack_b);
-    // else if (size[0] < 7)
 
     return (1);
 }

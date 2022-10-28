@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:15:37 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/28 15:21:47 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/28 18:30:08 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	calc_final_cost(t_stack *sta, t_stack *stb, int sta_len, int stb_len);
 void	choose_best_cost(t_stack *sta, t_stack *stb, int *all_costs);
 void	move_it(int to_move, t_stack **sta, t_stack **stb);
 void	start_process(t_stack *sta, t_stack *stb, int size);
-void	center_forfive(t_stack **sta, t_stack **stb, int size);
+void	center_forfive(t_stack **sta, t_stack **stb);
 void	instruct_b(t_stack *sta, t_stack *stb);
 void	algo(t_stack **sta, t_stack **stb);
 void	reset_instruct_B(t_stack *stb);

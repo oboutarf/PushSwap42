@@ -6,13 +6,13 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:04:30 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/27 15:11:02 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:49:15 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
-stack	*create_new_stack(void)
+t_stack	*create_new_stack(void)
 {
 	return (NULL);
 }
@@ -51,7 +51,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-booln	ft_isdup(char **av)
+t_booln	ft_isdup(char **av)
 {
 	int		i;
 	int		j;
@@ -73,7 +73,7 @@ booln	ft_isdup(char **av)
 	return (0);
 }
 
-booln	fill_stack(stack **stack_a, int ac, char **av)
+t_booln	fill_stack(t_stack **stack_a, int ac, char **av)
 {
 	while (ac > 0)
 	{
@@ -87,9 +87,9 @@ booln	fill_stack(stack **stack_a, int ac, char **av)
 	return (1);
 }
 
-void	print_stack(stack *st)
+void	print_stack(t_stack *st)
 {
-	stack	*start;
+	t_stack	*start;
 
 	start = st;
 	if (is_stack_clear(st) == clear)
@@ -98,7 +98,10 @@ void	print_stack(stack *st)
 		return ;
 	}
 	while (is_stack_clear(st) == unclear)
+	{
+		printf("   %d    INFOS --->  pos: %d   final__index: %d\n", st->value, st->pos, st->final_index);
 		st = st->next;//---> Add printf to print
+	}
 	st = start;
 	return ;
 }

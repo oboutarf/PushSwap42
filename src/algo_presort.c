@@ -6,13 +6,13 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:56:42 by oscobou           #+#    #+#             */
-/*   Updated: 2022/10/27 14:50:35 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/28 12:40:03 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
-static int	*create_chunk(stack *sta, int size)
+static int	*create_chunk(t_stack *sta, int size)
 {
 	int		*chunk;
 
@@ -26,7 +26,7 @@ static int	*create_chunk(stack *sta, int size)
 	return (chunk);
 }
 
-void	choose_push_or_rotate(stack **sta, stack **stb, int fifth_chunk)
+void	choose_push_or_rotate(t_stack **sta, t_stack **stb, int fifth_chunk)
 {
 	if ((*sta)->final_index != 0 && (*sta)->final_index != fifth_chunk)
 		ft_pb(sta, stb);
@@ -34,7 +34,7 @@ void	choose_push_or_rotate(stack **sta, stack **stb, int fifth_chunk)
 		ft_ra(sta);
 }
 
-void	call_algo(stack **sta, stack **stb)
+void	call_algo(t_stack **sta, t_stack **stb)
 {
 	ft_ra(sta);
 	ft_index(*sta);
@@ -42,7 +42,7 @@ void	call_algo(stack **sta, stack **stb)
 	algo(sta, stb);
 }
 
-void	start_process(stack *sta, stack *stb, int size)
+void	start_process(t_stack *sta, t_stack *stb, int size)
 {
 	int	*chunk;
 

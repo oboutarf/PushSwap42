@@ -6,16 +6,16 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 21:54:30 by oscobou           #+#    #+#             */
-/*   Updated: 2022/10/27 20:02:02 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/28 15:16:15 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
-void	ft_sa(stack **sta)
+void	ft_sa(t_stack **sta)
 {
-	stack	*save;
-	stack	*tmp;
+	t_stack	*save;
+	t_stack	*tmp;
 
 	if (!*sta || (*sta)->next == NULL)
 		return ;
@@ -25,11 +25,12 @@ void	ft_sa(stack **sta)
 	save = (*sta)->next;
 	(*sta)->next = tmp;
 	tmp->next = save;
+	ft_index(*sta);
 }
 
-void	ft_pa(stack **sta, stack **stb)
+void	ft_pa(t_stack **sta, t_stack **stb)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 
 	if (*stb == NULL)
 		return ;
@@ -45,12 +46,13 @@ void	ft_pa(stack **sta, stack **stb)
 	(*stb)->next = (*sta);
 	(*sta) = (*stb);
 	(*stb) = tmp;
+	ft_index(*sta);
 }
 
-void	ft_ra(stack **sta)
+void	ft_ra(t_stack **sta)
 {
-	stack	*save_a;
-	stack	*tmp;
+	t_stack	*save_a;
+	t_stack	*tmp;
 
 	if (!(*sta))
 		return ;
@@ -62,13 +64,14 @@ void	ft_ra(stack **sta)
 	(*sta)->next = save_a;
 	save_a->next = NULL;
 	(*sta) = tmp;
+	ft_index(*sta);
 }
 
-void	ft_rra(stack **sta)
+void	ft_rra(t_stack **sta)
 {
-	stack	*save_bottom;
-	stack	*tmp1;
-	stack	*tmp;
+	t_stack	*save_bottom;
+	t_stack	*tmp1;
+	t_stack	*tmp;
 
 	if (!(*sta))
 		return ;
@@ -81,4 +84,5 @@ void	ft_rra(stack **sta)
 	tmp->next = (NULL);
 	(*sta) = save_bottom;
 	(*sta)->next = tmp1;
+	ft_index(*sta);
 }

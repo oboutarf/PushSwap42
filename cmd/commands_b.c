@@ -6,16 +6,16 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 19:59:53 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/27 20:02:07 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/28 15:19:50 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
-void	ft_sb(stack **stb)
+void	ft_sb(t_stack **stb)
 {
-	stack	*save;
-	stack	*tmp;
+	t_stack	*save;
+	t_stack	*tmp;
 
 	if (!*stb || (*stb)->next == NULL)
 		return ;
@@ -25,11 +25,12 @@ void	ft_sb(stack **stb)
 	save = (*stb)->next;
 	(*stb)->next = tmp;
 	tmp->next = save;
+	ft_index(*stb);
 }
 
-void	ft_pb(stack **sta, stack **stb)
+void	ft_pb(t_stack **sta, t_stack **stb)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 
 	if (*sta == NULL)
 		return ;
@@ -45,12 +46,13 @@ void	ft_pb(stack **sta, stack **stb)
 	(*sta)->next = (*stb);
 	(*stb) = (*sta);
 	(*sta) = tmp;
+	ft_index(*stb);
 }
 
-void	ft_rb(stack **stb)
+void	ft_rb(t_stack **stb)
 {
-	stack	*save_b;
-	stack	*tmp;
+	t_stack	*save_b;
+	t_stack	*tmp;
 
 	if (!(*stb))
 		return ;
@@ -61,14 +63,15 @@ void	ft_rb(stack **stb)
 		(*stb) = (*stb)->next;
 	(*stb)->next = save_b;
 	save_b->next = NULL;
-	(*stb) = tmp; 
+	(*stb) = tmp;
+	ft_index(*stb);
 }
 
-void	ft_rrb(stack **stb)
+void	ft_rrb(t_stack **stb)
 {
-	stack	**stb_save;
-	stack	*save_bottom;
-	stack	*tmp;
+	t_stack	**stb_save;
+	t_stack	*save_bottom;
+	t_stack	*tmp;
 
 	if (!(*stb))
 		return ;
@@ -81,4 +84,5 @@ void	ft_rrb(stack **stb)
 	(*stb_save)->next = (NULL);
 	(*stb) = save_bottom;
 	(*stb)->next = tmp;
+	ft_index(*stb);
 }

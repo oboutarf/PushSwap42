@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_tools3.c                                     :+:      :+:    :+:   */
+/*   t_stack_tools3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:26:14 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/27 15:15:19 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/28 12:34:43 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	ft_numlen(int n)
 	return (len);
 }
 
-void	give_target(stack *sta)
+void	give_target(t_stack *sta)
 {
-	stack	*tmp;
-	stack	*tmp2;
+	t_stack	*tmp;
+	t_stack	*tmp2;
 	int		idx;
 
 	tmp = sta;
@@ -47,9 +47,9 @@ void	give_target(stack *sta)
 	}
 }
 
-int	min_elem(stack **sta)
+int	min_elem(t_stack **sta)
 {
-	stack	*start;
+	t_stack	*start;
 	int		min_elem;
 
 	start = (*sta);
@@ -65,9 +65,9 @@ int	min_elem(stack **sta)
 	return (min_elem);
 }
 
-int	max_elem(stack **sta)
+int	max_elem(t_stack **sta)
 {
-	stack	*start;
+	t_stack	*start;
 	int		max_elem;
 
 	start = (*sta);
@@ -83,7 +83,7 @@ int	max_elem(stack **sta)
 	return (max_elem);
 }
 
-int	get_stacklen(stack *st)
+int	get_stacklen(t_stack *st)
 {
 	int		total_len;
 

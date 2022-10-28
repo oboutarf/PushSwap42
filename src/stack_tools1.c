@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_tools1.c                                     :+:      :+:    :+:   */
+/*   stackck_tools1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:21:33 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/27 15:10:37 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/28 12:32:17 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
-booln	is_stack_clear(stack *st)
+t_booln	is_stack_clear(t_stack *st)
 {
 	if (st == NULL)
 		return (clear);
 	return (unclear);
 }
 
-stack	*elem_addto_stack(stack **st, int x)
+t_stack	*elem_addto_stack(t_stack **st, int x)
 {
-	stack	*element;
+	t_stack	*element;
 
 	element = malloc(sizeof(*element));
 	if (!element)
@@ -36,9 +36,9 @@ stack	*elem_addto_stack(stack **st, int x)
 	return (element);
 }
 
-stack	*clear_stack(stack *st)
+t_stack	*clear_stack(t_stack *st)
 {
-	stack	*element;
+	t_stack	*element;
 
 	if (is_stack_clear(st) == clear)
 		return (create_new_stack());
@@ -47,7 +47,7 @@ stack	*clear_stack(stack *st)
 	return (clear_stack(element));
 }
 
-booln	ft_isnumber(char *str)
+t_booln	ft_isnumber(char *str)
 {
 	int		i;
 
@@ -63,7 +63,7 @@ booln	ft_isnumber(char *str)
 	return (1);
 }
 
-void	ft_index(stack *st)
+void	ft_index(t_stack *st)
 {
 	int		index;
 

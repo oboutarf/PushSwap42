@@ -6,13 +6,13 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:54:52 by oscobou           #+#    #+#             */
-/*   Updated: 2022/10/27 11:18:26 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/28 12:29:15 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
-void	calc_final_cost(stack *sta, stack *stb, int sta_len, int stb_len)
+void	calc_final_cost(t_stack *sta, t_stack *stb, int sta_len, int stb_len)
 {
 	int	all_costs[4];
 	int	move_a[2];
@@ -29,7 +29,7 @@ void	calc_final_cost(stack *sta, stack *stb, int sta_len, int stb_len)
 	choose_best_cost(sta, stb, all_costs);
 }
 
-void	choose_best_cost(stack *sta, stack *stb, int *all_costs)
+void	choose_best_cost(t_stack *sta, t_stack *stb, int *all_costs)
 {
 	int	i;
 

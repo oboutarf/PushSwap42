@@ -6,13 +6,13 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:57:21 by oscobou           #+#    #+#             */
-/*   Updated: 2022/10/27 20:37:03 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/28 12:39:50 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
-void	time_to_move(stack **sta, stack **stb, int nb_rotate_a, int nb_rotate_b)
+void	time_to_move(t_stack **sta, t_stack **stb, int nb_rotate_a, int nb_rotate_b)
 {
 	if (nb_rotate_a > 0)
 		while (nb_rotate_a--)
@@ -28,11 +28,11 @@ void	time_to_move(stack **sta, stack **stb, int nb_rotate_a, int nb_rotate_b)
 			ft_rrb(stb);
 }
 
-void	move_it(int	to_move, stack **sta, stack **stb)
+void	move_it(int to_move, t_stack **sta, t_stack **stb)
 {
 	int		nb_rotate_a;
 	int		nb_rotate_b;
-	stack	*stb_save;
+	t_stack	*stb_save;
 
 	stb_save = *stb;
 	while (stb_save->pos != to_move)
@@ -52,7 +52,7 @@ void	move_it(int	to_move, stack **sta, stack **stb)
 	time_to_move(sta, stb, nb_rotate_a, nb_rotate_b);
 }
 
-void	put_staup(stack *sta)
+void	put_staup(t_stack *sta)
 {
 	int		mid;
 
@@ -65,7 +65,7 @@ void	put_staup(stack *sta)
 			ft_rra(&sta);
 }
 
-void	reset_instruct_b(stack *stb)
+void	reset_instruct_b(t_stack *stb)
 {
 	while (stb != NULL)
 	{
@@ -75,7 +75,7 @@ void	reset_instruct_b(stack *stb)
 	}
 }
 
-void	algo(stack **sta, stack **stb)
+void	algo(t_stack **sta, t_stack **stb)
 {
 	int	node_to_move;
 

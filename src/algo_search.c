@@ -6,13 +6,13 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:02:37 by oscobou           #+#    #+#             */
-/*   Updated: 2022/10/27 11:48:46 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/28 12:30:29 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incld/push_swap.h"
 
-int	search_lowcost(stack *stb)
+int	search_lowcost(t_stack *stb)
 {
 	int		f_cost;
 	int		pos;
@@ -31,7 +31,7 @@ int	search_lowcost(stack *stb)
 	return (pos);
 }
 
-int	search_prev(stack *sta, int index_of_current_node)
+int	search_prev(t_stack *sta, int index_of_current_node)
 {
 	int	i;
 	int	index_of_previous_node;
@@ -48,10 +48,10 @@ int	search_prev(stack *sta, int index_of_current_node)
 	return (value_of_previous_node);
 }
 
-void	instruct_b(stack *sta, stack *stb)
+void	instruct_b(t_stack *sta, t_stack *stb)
 {
-	stack	*sta_save;
-	stack	*stb_save;
+	t_stack	*sta_save;
+	t_stack	*stb_save;
 	int		prev;
 
 	prev = 0;

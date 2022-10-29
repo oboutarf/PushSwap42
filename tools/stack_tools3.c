@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:26:14 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/28 19:58:09 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/29 22:58:12 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,23 @@ int	min_elem(t_stack **sta)
 	}
 	(*sta) = start;
 	return (min_elem);
+}
+
+void	free_stacks(t_stack **sta, t_stack **stb)
+{
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+
+	while ((*sta))
+	{
+		stack_a = (*sta)->next;
+		free(*sta);
+		(*sta) = stack_a;
+	}
+	while ((*stb))
+	{
+		stack_b = (*stb)->next;
+		free(*stb);
+		(*stb) = stack_b;
+	}
 }

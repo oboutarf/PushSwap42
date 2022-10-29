@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 19:55:33 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/28 19:58:19 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/29 21:27:35 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_booln	fill_stack(t_stack **stack_a, int ac, char **av)
 	while (ac > 0)
 	{
 		(*stack_a) = elem_addto_stack(stack_a, ft_atoi(av[ac]));
-		if (!ft_isnumber(av[ac]))
+		if (ft_isnumber(av[ac]) == 12)
 			return (clear_stack(*stack_a), 0);
 		if (!(*stack_a))
 			return (clear_stack(*stack_a), 0);

@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:32:52 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/28 18:32:24 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/29 21:29:16 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ void	search_low_elems(t_stack **sta, t_stack **stb)
 	}
 }
 
-void	center_forfive(t_stack **sta, t_stack **stb)
+t_stack	*center_forfive(t_stack **sta, t_stack **stb)
 {
 	int		count;
 
 	count = 2;
 	search_low_elems(sta, stb);
-	center_forthree(*sta);
+	(*sta) = center_forthree(*sta);
 	if ((*stb)->final_index > (*stb)->next->final_index)
 		while (count-- > 0)
 			ft_pa(sta, stb);
@@ -69,4 +69,5 @@ void	center_forfive(t_stack **sta, t_stack **stb)
 		while (count-- > 0)
 			ft_pa(sta, stb);
 	}
+	return ((*sta));
 }

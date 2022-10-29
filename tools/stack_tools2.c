@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:04:30 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/28 19:55:55 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/29 23:46:54 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,43 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-t_booln	ft_isdup(char **av)
+/* int	ft_isdup(t_stack *sta)
 {
-	int		i;
-	int		j;
+	t_stack		*sta_comp;
 
-	i = 1;
-	j = 0;
-	while (av[j])
+	sta_comp = sta;
+	while (sta)
 	{
-		while (av[i])
+		sta_comp = sta->next;
+		while (sta_comp)
 		{
-			if (ft_atoi(av[i]) == ft_atoi(av[j]))
-				return (1);
-			i++;
+			if (sta->value == sta_comp->value)
+				return (-1);
+			sta_comp = sta_comp->next;
 		}
-		j++;
-		i = j + 1;
+		sta = sta->next;
+	}
+	return (0);
+} */
+
+
+int	ft_isdup(char **av)
+{
+	int		comparing;
+	int		to_comp;
+
+	to_comp = 1;
+	comparing = 0;
+	while (av[to_comp])
+	{
+		comparing = to_comp + 1;
+		while (av[comparing])
+		{
+			if (ft_atoi(av[to_comp]) == ft_atoi(av[comparing]))
+				return (-1);
+			comparing++;
+		}
+		to_comp++;
 	}
 	return (0);
 }

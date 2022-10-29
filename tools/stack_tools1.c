@@ -6,7 +6,7 @@
 /*   By: oboutarf <oboutarf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 13:21:33 by oboutarf          #+#    #+#             */
-/*   Updated: 2022/10/28 18:33:54 by oboutarf         ###   ########.fr       */
+/*   Updated: 2022/10/29 21:29:03 by oboutarf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,9 @@ t_stack	*elem_addto_stack(t_stack **st, int x)
 {
 	t_stack	*element;
 
-	element = malloc(sizeof(*element));
+	element = malloc(sizeof(t_stack));
 	if (!element)
-	{
-		printf("Malloc error !");
 		return (NULL);
-	}
 	element->value = x;
 	element->final_cost = -1;
 	element->next = *st;
@@ -47,20 +44,22 @@ t_stack	*clear_stack(t_stack *st)
 	return (clear_stack(element));
 }
 
-t_booln	ft_isnumber(char *str)
+long	ft_isnumber(char *str)
 {
 	int		i;
 
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
+	if (str[i] == '\0')
+		return (12);
 	while (str[i])
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (0);
+			return (12);
 		i++;
 	}
-	return (1);
+	return (9);
 }
 
 void	ft_index(t_stack *st)
